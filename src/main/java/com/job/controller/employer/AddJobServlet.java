@@ -44,8 +44,8 @@ public class AddJobServlet extends HttpServlet {
         JobDao jobDao=new JobDao();
         jobDao.addJob(job);
         
-        RequestDispatcher dispatcher=request.getRequestDispatcher("employer/employer_dashboard.jsp");
-        dispatcher.forward(request, response);
+   	 	response.sendRedirect(request.getContextPath()+"/employer-dashboard"); //context path= http://localhost:8080/jobPortal
+	 
         
     }
 }

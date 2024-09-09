@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
         		 
         		 
              } else if (loggedUser.getRole().equals("JobSeeker")) {
-            	 response.sendRedirect("candidate/jobSeeker_dashboard.jsp");
+            	 response.sendRedirect(request.getContextPath()+"/candidate-dashboard");
              } else {
                  response.sendRedirect("error.jsp");  
              }
