@@ -13,7 +13,7 @@
 	
 	<p>As an job seeker, you can apply for the job here.</p>
 
-	<h1>All the jobs</h1>
+	<h2>All the jobs</h2>
 	<table class="table">
 				<thead>
 					<tr>
@@ -27,8 +27,6 @@
 					</tr>
 				</thead>
 				<tbody>
-
-
 					<c:forEach var="job" items="${allJobs}">
 						<tr>
 							<td>${job.jobTitle}</td>
@@ -38,7 +36,7 @@
 							<td>${job.status}</td>
 							<td>${job.company.companyName}</td>
 							
-							<td><a href="view-job?id=${job.jobId}">View Details</a> 
+							<td><a href="view-job-details?id=${job.jobId}">View Details</a> 
 						</tr>
 					</c:forEach>
 				</tbody>

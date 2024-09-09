@@ -30,6 +30,7 @@
 					<input type="submit" value="Search">
 				</form>
 			</li>
+			<li>Welcome: ${sessionScope.user.username} (${sessionScope.user.role})</li>
 		</ul>
 	</nav>
 </body>

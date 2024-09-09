@@ -98,4 +98,44 @@ public class JobDao {
 		return jobs;
 	}
 
+	public Job getJobById(int jobId) {
+		String sql = "SELECT j.job_id, j.job_title, j.job_description, j.location, j.salary, j.job_type, j.status,  j.posted_on, c.company_id, c.company_name FROM Job j JOIN Company c ON j.employer_id = c.employer_id where j.job_id=?";
+
+		Job job=null;
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, jobId);
+			ResultSet rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+
+				Company company = new Company();
+				company.setCompanyId(rs.getLong("company_id"));
+				company.setCompanyName(rs.getString("company_name"));
+
+				job = new Job();
+
+				job.setJobId(rs.getLong("job_id"));
+				job.setJobTitle(rs.getString("job_title"));
+				job.setJobDescription(rs.getString("job_description"));
+				job.setLocation(rs.getString("location"));
+				job.setJobType(rs.getString("job_type"));
+				job.setStatus(rs.getString("status"));
+				job.setSalary(rs.getDouble("salary"));
+				job.setPostedDate(rs.getTimestamp("posted_on"));
+				job.setCompany(company);
+				
+				return job;
+			}
+			
+			rs.close();
+			pstmt.close();
+
+		} catch (Exception e) {
+			 e.printStackTrace();  
+
+		}
+		return job;
+	}
+
 }

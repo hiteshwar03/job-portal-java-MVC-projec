@@ -1,0 +1,56 @@
+package com.job.controller.candidate;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+import com.job.dao.ApplicationDao;
+import com.job.model.Application;
+import com.job.model.User;
+
+
+@WebServlet("/apply-job")
+@MultipartConfig(
+	    fileSizeThreshold = 1024 * 1024,  // 1 MB
+	    maxFileSize = 10 * 1024 * 1024,   // 10 MB
+	    maxRequestSize = 20 * 1024 * 1024  // 20 MB
+	)
+public class ApplyJobServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	HttpSession session=request.getSession();
+    	User user=(User) session.getAttribute("user");
+    	
+    	Long jobid=Long.parseLong(request.getParameter("jobId"));
+    	String skill=request.getParameter("skills");
+    	Part filePart = request.getPart("resume");
+    	
+    	InputStream fileContent=null;
+    	  if (filePart != null) {
+              // Get input stream from the file part
+              fileContent = filePart.getInputStream();
+    	  }
+    	  
+
+    	  Application application=new Application();
+    	  application.setCandidateId(user.getUserId());
+    	  application.setJobId(jobid);
+    	  application.setCoverLetter(skill);
+    	  application.setResume(fileContent.readAllBytes());
+    	  
+    	  
+    	  ApplicationDao applicationDao=new ApplicationDao();
+    	  applicationDao.addApplication(application);
+    	  
+    	  response.sendRedirect(request.getContextPath()+"/candidate-dashboard");
+        
+    }
+}
