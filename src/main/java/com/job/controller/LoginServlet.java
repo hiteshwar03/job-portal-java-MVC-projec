@@ -41,7 +41,8 @@ public class LoginServlet extends HttpServlet {
         		 
         		 //if company is already added
         		 if(companyExist!=null)
-        			 response.sendRedirect("employer/employer_dashboard.jsp");
+        			 response.sendRedirect(request.getContextPath()+"/employer-dashboard"); //context path= http://localhost:8080/jobPortal
+    			 
         		         		 
 //        		 if company not already added(register company)
         		 else

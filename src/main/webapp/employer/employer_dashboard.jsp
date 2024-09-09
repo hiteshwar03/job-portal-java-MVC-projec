@@ -11,25 +11,17 @@
 <body>
 	<%@ include file="/components/employer_navbar.jsp"%>  
 	
-	<%
-		HttpSession session2=request.getSession();
-	 	User user=(User) session2.getAttribute("user");
-	%>
 	
-	<p>Hello: <%= user.getUsername() %>  (<%= user.getRole() %>)</p>  
+	<p>Hello: ${sessionScope.user.username}  (${sessionScope.user.role})</p>  
 	  
 	
 	<p>As an employer, you can manage your job postings and
 		applications here.</p>
 		
-	<%
-		CompanyDao companyDao=new CompanyDao();
-		Company company= companyDao.isCompanyExist(user.getUserId());
-	
-	%>
-	<h3>Comapny Name: <%= company.getCompanyName() %></h3>
-	<p>Address: <%= company.getCompanyAddress() %></p>
-	<p>Email: <%= company.getCompanyEmail() %></p>
+
+	<h3>Comapny Name: ${company.companyName}</h3>
+	<p>Address:  ${company.companyAddress}</p>
+	<p>Email:  ${company.companyEmail}</p>
 
 	<!-- Displaying posted jobs -->
 	<h3>Your Posted Jobs</h3>
