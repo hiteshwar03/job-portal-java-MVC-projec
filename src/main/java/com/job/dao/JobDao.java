@@ -5,9 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.job.model.Company;
 import com.job.model.Job;
 import com.job.model.User;
 
@@ -29,7 +32,7 @@ public class JobDao {
 
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
-			
+
 			stmt.setLong(1, job.getEmployerId());
 			stmt.setString(2, job.getJobTitle());
 			stmt.setString(3, job.getJobDescription());
@@ -37,20 +40,62 @@ public class JobDao {
 			stmt.setDouble(5, job.getSalary());
 			stmt.setString(6, job.getJobType());
 			stmt.setString(7, job.getStatus());
-						
-			int res= stmt.executeUpdate();
-			
-			if(res>0) {
+
+			int res = stmt.executeUpdate();
+
+			if (res > 0) {
 				return true;
 			}
-			
+
 			stmt.close();
 		} catch (Exception e) {
-			 e.printStackTrace();
+			e.printStackTrace();
 		}
-		
-		
+
 		return false;
 	}
-	
+
+	public List<Job> getAllJobsWithCompany() {
+		String sql = "SELECT j.job_id, j.job_title, j.job_description, j.location, j.salary, j.job_type, j.status,  j.posted_on, c.company_id, c.company_name FROM Job j JOIN Company c ON j.employer_id = c.employer_id";
+//		String sql = "SELECT j.job_id, j.title, j.description, j.location, j.posted_date, e.company_name FROM jobs j JOIN employers e ON j.eid = e.employer_id where e.employer_id=?;";
+
+		List<Job> jobs = new ArrayList<>();
+
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				Company company = new Company();
+				company.setCompanyId(rs.getLong("company_id"));
+				company.setCompanyName(rs.getString("company_name"));
+
+				Job job = new Job();
+
+				job.setJobId(rs.getLong("job_id"));
+				job.setJobTitle(rs.getString("job_title"));
+				job.setJobDescription(rs.getString("job_description"));
+				job.setLocation(rs.getString("location"));
+				job.setJobType(rs.getString("job_type"));
+				job.setStatus(rs.getString("status"));
+				job.setSalary(rs.getDouble("salary"));
+				job.setPostedDate(rs.getTimestamp("posted_on"));
+				job.setCompany(company);
+
+				jobs.add(job);
+
+			}
+			
+			rs.close();
+			pstmt.close();
+
+		} catch (Exception e) {
+			 e.printStackTrace();  
+
+		}
+		return jobs;
+	}
+
 }

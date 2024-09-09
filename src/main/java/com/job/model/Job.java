@@ -1,5 +1,6 @@
 package com.job.model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -11,11 +12,11 @@ public class Job {
     private String location;
     private double salary;
     private String jobType;
-    private String postedDate;  
+    private Timestamp postedDate;  
     private String status;  
     
     // Relationship
-    private User company;
+    private Company company;
 
 	public Long getJobId() {
 		return jobId;
@@ -74,11 +75,13 @@ public class Job {
 		this.jobType = jobType;
 	}
 
-	public String getPostedDate() {
+	
+
+	public Timestamp getPostedDate() {
 		return postedDate;
 	}
 
-	public void setPostedDate(String postedDate) {
+	public void setPostedDate(Timestamp postedDate) {
 		this.postedDate = postedDate;
 	}
 
@@ -90,18 +93,18 @@ public class Job {
 		this.status = status;
 	}
 
-	public User getCompany() {
+	public Company getCompany() {
 		return company;
 	}
 
-	public void setCompany(User company) {
+	public void setCompany(Company company) {
 		this.company = company;
 	}
 
 	
 
 	public Job(Long jobId, Long employerId, String jobTitle, String jobDescription, String location, double salary,
-			String jobType, String postedDate, String status, User company) {
+			String jobType, Timestamp postedDate, String status, Company company) {
 		super();
 		this.jobId = jobId;
 		this.employerId = employerId;
