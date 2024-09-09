@@ -23,7 +23,7 @@
 	<nav>
 		<ul>
 			<li><a href="">Home</a></li>
-			<li><a href="">Add post</a></li>
+			<li><a href="${pageContext.request.contextPath}/employer/add_job.jsp">Add post</a></li>
 			<li><a href="">View Application</a></li>
 			<li><a href="">Logout</a></li>	
 		</ul>

@@ -1,7 +1,7 @@
 <%@ page session="true" %>
 <%@ page import="java.sql.*" %>
 
-<%@ include file="/components/candidate_navbar.jsp"%>  
+ 
 	
 	
 <html>
@@ -9,6 +9,7 @@
 
 </head>
 <body>
+	<%@ include file="/components/candidate_navbar.jsp"%> 
 	<p>Welcome: ${sessionScope.user.username} (${sessionScope.user.role})</p> 
 	  
 	
