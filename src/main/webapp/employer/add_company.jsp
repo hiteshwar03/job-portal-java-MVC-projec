@@ -3,7 +3,7 @@
 
 </head>
 <body>
-	<form action="add-company" method="POST">
+	<form action="${pageContext.request.contextPath}/add-company" method="POST">
 		<label for="username">Comapny Name:</label> 
 		<input type="text" name="companyName" required><br> 
 		

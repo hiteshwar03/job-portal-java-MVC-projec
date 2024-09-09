@@ -51,7 +51,8 @@ public class CompanyDao {
 	}
 
 	//if particular user registered its company
-	public boolean isCompanyExist(Long userId) {
+	public Company isCompanyExist(Long userId) {
+		Company company=null;
 		try {
 			String sql = "SELECT * FROM Company WHERE employer_id = ?";
 	        PreparedStatement stmt = con.prepareStatement(sql);
@@ -60,15 +61,18 @@ public class CompanyDao {
 	        ResultSet rs = stmt.executeQuery();
 	        
 	        if (rs.next()) {
-	        	return true;
+	        	company=new Company();
+	        	company.setCompanyName(rs.getString("company_name"));
+	        	company.setCompanyAddress(rs.getString("company_address"));
+	        	company.setCompanyEmail(rs.getString("company_email"));
+	        	return company;
 	        }
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
         
-		return false;
+		return company;
 		
 	}
 
-	
 }

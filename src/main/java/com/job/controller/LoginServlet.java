@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.job.dao.CompanyDao;
 import com.job.dao.UserDao;
+import com.job.model.Company;
 import com.job.model.User;
 
 @WebServlet("/login")
@@ -36,10 +37,10 @@ public class LoginServlet extends HttpServlet {
         	 if (loggedUser.getRole().equals("Employer")) {
         		 
         		 CompanyDao companyDao=new CompanyDao();
-        		 boolean companyExist = companyDao.isCompanyExist(user.getUserId());
+        		 Company companyExist = companyDao.isCompanyExist(user.getUserId());
         		 
         		 //if company is already added
-        		 if(companyExist)
+        		 if(companyExist!=null)
         			 response.sendRedirect("employer/employer_dashboard.jsp");
         		         		 
 //        		 if company not already added(register company)

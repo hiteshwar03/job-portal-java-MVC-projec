@@ -60,6 +60,12 @@ public class Company {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "Company [companyId=" + companyId + ", companyName=" + companyName + ", companyAddress=" + companyAddress
+				+ ", companyWebsite=" + companyWebsite + ", companyEmail=" + companyEmail + ", addedOn=" + addedOn
+				+ "]";
+	}
     
     
     

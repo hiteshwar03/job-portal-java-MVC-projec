@@ -34,16 +34,11 @@ public class AddCompanyServlet extends HttpServlet {
         company.setCompanyName(companyName);
         company.setCompanyAddress(companyAddress);
         company.setCompanyWebsite(companyWebsite);
-        company.setCompanyWebsite(companyWebsite);
+        company.setCompanyEmail(companyEmail);
         
         CompanyDao companyDao=new CompanyDao();
         companyDao.addCompany(company);
         
-        
-        HttpSession session1=request.getSession();
-        session1.setAttribute("companyName",companyAddress);
-        
-        request.setAttribute("company", company);
         RequestDispatcher dispatcher=request.getRequestDispatcher("employer/employer_dashboard.jsp");
         dispatcher.forward(request, response);
         
