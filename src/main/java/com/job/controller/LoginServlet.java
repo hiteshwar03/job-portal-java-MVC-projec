@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.job.dao.CompanyDao;
 import com.job.dao.UserDao;
 import com.job.model.User;
 
@@ -28,15 +29,26 @@ public class LoginServlet extends HttpServlet {
         if(loggedUser!=null) {
         	HttpSession session=request.getSession();
         	session.setAttribute("user", loggedUser);
+        	User user=(User)session.getAttribute("user");
         	
         	System.out.println(loggedUser.getRole());
         	//if logged in user is employer
         	 if (loggedUser.getRole().equals("Employer")) {
-                 RequestDispatcher dispatcher = request.getRequestDispatcher("employer/employer_dashboard.jsp");
-                 dispatcher.forward(request, response); 
+        		 
+        		 CompanyDao companyDao=new CompanyDao();
+        		 boolean companyExist = companyDao.isCompanyExist(user.getUserId());
+        		 
+        		 //if company is already added
+        		 if(companyExist)
+        			 response.sendRedirect("employer/employer_dashboard.jsp");
+        		         		 
+//        		 if company not already added(register company)
+        		 else
+        			 response.sendRedirect("employer/add_company.jsp");
+        		 
+        		 
              } else if (loggedUser.getRole().equals("JobSeeker")) {
-                 RequestDispatcher dispatcher = request.getRequestDispatcher("candidate/jobSeeker_dashboard.jsp");
-                 dispatcher.forward(request, response); 
+            	 response.sendRedirect("candidate/jobSeeker_dashboard.jsp");
              } else {
                  response.sendRedirect("error.jsp");  
              }
