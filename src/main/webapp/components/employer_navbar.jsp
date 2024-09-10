@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <script src="https://kit.fontawesome.com/846c497550.js"
 	crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,19 +15,31 @@
 <%@ include file="/components/common_style.jsp" %>
 <style>
 /* styles.css */
-body {
+html {
 	margin: 0;
 	padding: 0;
 	font-family: "Poppins", sans-serif;
 	font-weight: 300;
 }
-
-nav {
-	display: flex;
-	justify-content: space-between;
+header{
 	width: 80vw;
 	margin: 0 auto;
-	background-color: rgb(71, 2, 222);
+	display:flex;
+	gap:1rem;
+	justify-content: space-between;
+	align-items: end;
+}
+
+#logo {
+	width:10%
+}
+
+nav {
+	width:90%;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+	background-color: #3572EF;
 	padding: 8px;
 	height:3rem;
 	
@@ -38,7 +51,6 @@ nav {
 	& a {
 		text-decoration: none;
 		color: white;
-		font-size: 1.2rem;
 		
 		&:hover{
 			color:red;
@@ -63,21 +75,11 @@ nav {
 
 
 
-.logo {
-	background-color: darkgreen;
-	color: white;
-	height: 5rem;
-	margin: 0 auto;
-	width: 80%;
-	text-align: center;
-	font-size: 1.5rem;
-	padding-top:1rem;
-}
 
 form { 
 	&>input { 
-		width:15rem;
 		height: 1.8rem;
+		width:16rem;
 		border-radius: 2px;
 		border: none;
 	}
@@ -91,6 +93,7 @@ form {
 	}
 
 }
+
 #username{
 	font-weight: 600;
 }
@@ -98,30 +101,49 @@ form {
 	font-weight: 200;
 }
 </style>
+
 </head>
 <body>
-	<div>
-		<div class="logo">
-			<h1>Online Job Portal</h1>
-		</div>
-		<nav>
-			<ul class="nav1">
-				<li><a href="#home">Dashboard &nbsp; </a>|</li>
-				<li><a href="${pageContext.request.contextPath}/employer/add_job.jsp">Post Job &nbsp; </a>|</li>
-				<li><a href="#about">View Application</a></li>
-				<li>
-					<form action="">
-						<input type="text" placeholder="Search Jobs here">
-						<button type="submit">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</button>
-					</form>
-				</li>
-			</ul>
-			<ul class="nav2">
-				<li><a href="#login"><i class="fa-solid fa-user-tie"></i> <span id="username">${sessionScope.user.username}</span> | Role : <span id="role">${sessionScope.user.role}</span></a></li>
-			</ul>
-		</nav>
-	</div>
+
+	   	<header>
+			<div id="logo">
+				<img alt="" src="https://logodix.com/logo/1038127.jpg" width="140px">
+			</div>
+			
+			  <nav>
+				<ul class="nav1">
+					<li><a href="#home">Dashboard &nbsp; </a>|</li>
+					<li><a href="${pageContext.request.contextPath}/employer/add_job.jsp">Post Job &nbsp; </a>|</li>
+					<li><a href="#about">View Application</a></li>
+					<li>
+						<form action="">
+							<input type="text" placeholder="Search Jobs here">
+							<button type="submit">
+								<i class="fa-solid fa-magnifying-glass"></i>
+							</button>
+						</form>
+					</li>
+				</ul>
+				<ul class="nav2">
+					<li>
+						<a href="${empty sessionScope.user ? '#login' : '#profile'}">
+						   <c:choose>
+						       <c:when test="${not empty sessionScope.user}">
+						           <span id="username">${sessionScope.user.username}</span> 
+						           | Role: <span id="role">${sessionScope.user.role}</span>
+						       </c:when>
+						       <c:otherwise>
+						           <a href="login.jsp">Login</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+						           <a href="register.jsp">Signup</a> 
+						       </c:otherwise>
+						   </c:choose>
+						</a>
+					</li>
+	
+				</ul>
+			</nav>
+				
+	</header>
+	<hr>
 </body>
 </html>
