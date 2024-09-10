@@ -31,6 +31,7 @@
 		<label for="username">Resume</label>
 		<input type="file" name="resume" accept=".pdf"> <br> 
 		
+		
 		 <input type="submit" value="Apply">
 	</form>
 	

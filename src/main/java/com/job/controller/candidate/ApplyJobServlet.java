@@ -3,7 +3,6 @@ package com.job.controller.candidate;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +13,9 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.job.dao.ApplicationDao;
+import com.job.dao.CandidateDao;
 import com.job.model.Application;
+import com.job.model.Candidate;
 import com.job.model.User;
 
 
@@ -25,7 +26,10 @@ import com.job.model.User;
 	    maxRequestSize = 20 * 1024 * 1024  // 20 MB
 	)
 public class ApplyJobServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ 
+	private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session=request.getSession();
     	User user=(User) session.getAttribute("user");
     	
@@ -39,16 +43,33 @@ public class ApplyJobServlet extends HttpServlet {
               fileContent = filePart.getInputStream();
     	  }
     	  
-
+    	  //store candidate
+    	  Candidate candidate=new Candidate();
+    	  candidate.setJobSeekerId(user.getUserId());
+    	  candidate.setCover(skill);
+    	  candidate.setResume(fileContent.readAllBytes());
+    			  
+    	  
+    	  CandidateDao candidateDao=new CandidateDao();
+    	  boolean res = candidateDao.addCandidate(candidate);
+   
+    	  
+    	  //fetch candidate id
+    	 Long candidate_id = candidateDao.getCandidateIdByJobSeekerId(user.getUserId());
+    	  
+    	 
+    	 //store application
     	  Application application=new Application();
-    	  application.setCandidateId(user.getUserId());
-    	  application.setJobId(jobid);
-    	  application.setCoverLetter(skill);
-    	  application.setResume(fileContent.readAllBytes());
+    	  application.setCandidateId(candidate_id);
+    	  application.setJobId(jobid); 	  
     	  
     	  
-    	  ApplicationDao applicationDao=new ApplicationDao();
-    	  applicationDao.addApplication(application);
+    	  if(res) {
+    		  ApplicationDao applicationDao=new ApplicationDao();
+    		  applicationDao.addApplication(application);    		  
+    		  
+    	  }
+    	  
     	  
     	  response.sendRedirect(request.getContextPath()+"/candidate-dashboard");
         

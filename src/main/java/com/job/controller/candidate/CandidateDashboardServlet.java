@@ -13,22 +13,23 @@ import javax.servlet.http.HttpSession;
 
 import com.job.dao.CompanyDao;
 import com.job.dao.JobDao;
-import com.job.dao.UserDao;
-import com.job.model.Company;
 import com.job.model.Job;
 import com.job.model.User;
 
 
 @WebServlet("/candidate-dashboard")
 public class CandidateDashboardServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ 
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	
     	HttpSession session=request.getSession();
 	 	User user=(User) session.getAttribute("user");
 	 	
     	CompanyDao companyDao=new CompanyDao();
-		Company company= companyDao.isCompanyExist(user.getUserId());
+		companyDao.isCompanyExist(user.getUserId());
     	
 		JobDao jobDao=new JobDao();
 		List<Job> allJobsWithCompany = jobDao.getAllJobsWithCompany();

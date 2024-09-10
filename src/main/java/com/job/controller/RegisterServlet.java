@@ -1,9 +1,6 @@
 package com.job.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,7 +15,10 @@ import com.job.model.User;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    
+	private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
         String username = request.getParameter("username");
         String password = request.getParameter("password");  

@@ -11,14 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.job.dao.CompanyDao;
-import com.job.dao.UserDao;
+
 import com.job.model.Company;
 import com.job.model.User;
 
 
 @WebServlet("/add-company")
 public class AddCompanyServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  
+	private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
         String companyName = request.getParameter("companyName");
         String companyAddress = request.getParameter("companyAddress");  

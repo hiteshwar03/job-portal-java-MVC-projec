@@ -1,7 +1,6 @@
 package com.job.model;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 
 public class Job {

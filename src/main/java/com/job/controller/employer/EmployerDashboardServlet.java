@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import com.job.dao.CompanyDao;
 import com.job.dao.JobDao;
-import com.job.dao.UserDao;
 import com.job.model.Company;
 import com.job.model.Job;
 import com.job.model.User;
@@ -21,7 +20,10 @@ import com.job.model.User;
 
 @WebServlet("/employer-dashboard")
 public class EmployerDashboardServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	
     	HttpSession session=request.getSession();
