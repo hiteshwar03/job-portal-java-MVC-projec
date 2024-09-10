@@ -25,7 +25,7 @@ public class JobDao {
 	}
 
 	public boolean addJob(Job job) {
-		String sql = "INSERT INTO Job ( employer_id, job_title, job_description, location, salary, job_type, status ) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Job ( employer_id, job_title, job_description, location, salary, job_type, status, experience, requirements, responsibilities, benefits, openings ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -37,6 +37,11 @@ public class JobDao {
 			stmt.setDouble(5, job.getSalary());
 			stmt.setString(6, job.getJobType());
 			stmt.setString(7, job.getStatus());
+			stmt.setString(8, job.getExperience());
+			stmt.setString(9, job.getRequirement());
+			stmt.setString(10, job.getResponisibilities());
+			stmt.setString(11, job.getBenefits());
+			stmt.setString(12, job.getVacancy());
 
 			int res = stmt.executeUpdate();
 

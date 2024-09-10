@@ -27,6 +27,12 @@ public class AddJobServlet extends HttpServlet {
         double salary =  Double.parseDouble(request.getParameter("salary"));
         String jobType = request.getParameter("jobType"); 
         String status = request.getParameter("status"); 
+        String experience = request.getParameter("experience"); 
+        String requirement = request.getParameter("requirement"); 
+        String responsibilities = request.getParameter("responsibilities"); 
+        String benefits = request.getParameter("benefits"); 
+        String openings = request.getParameter("openings"); 
+        
         
         HttpSession session=request.getSession();
         User user =(User) session.getAttribute("user");
@@ -39,6 +45,11 @@ public class AddJobServlet extends HttpServlet {
         job.setJobType(jobType);
         job.setStatus(status);
         job.setEmployerId(user.getUserId());
+        job.setExperience(experience);
+        job.setRequirement(requirement);
+        job.setResponisibilities(responsibilities);
+        job.setBenefits(benefits);
+        job.setVacancy(openings);
         
         JobDao jobDao=new JobDao();
         jobDao.addJob(job);

@@ -13,6 +13,12 @@ public class Job {
     private String jobType;
     private Timestamp postedDate;  
     private String status;  
+    private String experience;
+    private String requirement;
+    private String responisibilities;
+    private String benefits;
+    private String vacancy;
+    
     
     // Relationship
     private Company company;
@@ -102,8 +108,51 @@ public class Job {
 
 	
 
+	public String getExperience() {
+		return experience;
+	}
+
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
+
+	public String getRequirement() {
+		return requirement;
+	}
+
+	public void setRequirement(String requirement) {
+		this.requirement = requirement;
+	}
+
+	public String getResponisibilities() {
+		return responisibilities;
+	}
+
+	public void setResponisibilities(String responisibilities) {
+		this.responisibilities = responisibilities;
+	}
+
+	public String getBenefits() {
+		return benefits;
+	}
+
+	public void setBenefits(String benefits) {
+		this.benefits = benefits;
+	}
+
+	public String getVacancy() {
+		return vacancy;
+	}
+
+	public void setVacancy(String vacancy) {
+		this.vacancy = vacancy;
+	}
+
+	
+
 	public Job(Long jobId, Long employerId, String jobTitle, String jobDescription, String location, double salary,
-			String jobType, Timestamp postedDate, String status, Company company) {
+			String jobType, Timestamp postedDate, String status, String experience, String requirement,
+			String responisibilities, String benefits, String vacancy, Company company) {
 		super();
 		this.jobId = jobId;
 		this.employerId = employerId;
@@ -114,6 +163,11 @@ public class Job {
 		this.jobType = jobType;
 		this.postedDate = postedDate;
 		this.status = status;
+		this.experience = experience;
+		this.requirement = requirement;
+		this.responisibilities = responisibilities;
+		this.benefits = benefits;
+		this.vacancy = vacancy;
 		this.company = company;
 	}
 

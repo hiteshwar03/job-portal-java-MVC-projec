@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <script src="https://kit.fontawesome.com/846c497550.js"
 	crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -112,7 +113,7 @@ form {
 			
 			  <nav>
 				<ul class="nav1">
-					<li><a href="#home">Dashboard &nbsp; </a>|</li>
+					<li><a href="${pageContext.request.contextPath}/employer/employer_dashboard.jsp">Dashboard &nbsp; </a>|</li>
 					<li><a href="${pageContext.request.contextPath}/employer/add_job.jsp">Post Job &nbsp; </a>|</li>
 					<li><a href="#about">View Application</a></li>
 					<li>
@@ -129,7 +130,8 @@ form {
 						<a href="${empty sessionScope.user ? '#login' : '#profile'}">
 						   <c:choose>
 						       <c:when test="${not empty sessionScope.user}">
-						           <span id="username">${sessionScope.user.username}</span> 
+						           <span id="username">${fn:toUpperCase(sessionScope.user.username)}</span> 
+						 </a>
 						           | Role: <span id="role">${sessionScope.user.role}</span>
 						       </c:when>
 						       <c:otherwise>
@@ -137,7 +139,7 @@ form {
 						           <a href="register.jsp">Signup</a> 
 						       </c:otherwise>
 						   </c:choose>
-						</a>
+						
 					</li>
 	
 				</ul>
