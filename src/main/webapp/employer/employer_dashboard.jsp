@@ -52,7 +52,7 @@
             <hr>
             <div class="content">
                 <aside>
-                <h3>Your Company Details</h3>
+                <h3></h3>
                     <div class="card" style="width: 25rem;">
                         
                         <ul class="list-group list-group-flush">
@@ -73,8 +73,7 @@
 							<th>Job Type</th>
 							<th>Posted date</th>
 							<th>Status</th>
-							<th>Company</th>
-							<th width="1rem">Action</th>
+							<th>Action</th>
                         </tr>
                         <c:forEach var="job" items="${allJobs}">
                         <tr>
@@ -84,10 +83,9 @@
 							<td>${job.jobType}</td>
 							<td>${job.postedDate}</td>
 							<td>${job.status}</td>
-							<td>${job.company.companyName}</td>
-                            <td><a href="view-job?id=${job.jobId}" id="view">View</a></td>
-                            <td><a href="view-job?id=${job.jobId}" id="edit">Edit</a></td>
-                            <td><a href="view-job?id=${job.jobId}" id="delete">Delete</a></td>
+                            <td><a href="view-job?id=${job.jobId}" id="view"><i class="fa-regular fa-eye"></i></a></td>
+                            <td><a href="view-job?id=${job.jobId}" id="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                            <td><a href="view-job?id=${job.jobId}" id="delete"><i class="fa-solid fa-trash"></i></a></td>
                          </tr>
                          </c:forEach>
                     </table>
