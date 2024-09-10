@@ -3,6 +3,7 @@
 
 </head>
 <body>
+<%@ include file="/components/employer_navbar.jsp" %>
 	<form action="${pageContext.request.contextPath}/add-company" method="POST">
 		<label for="username">Comapny Name:</label> 
 		<input type="text" name="companyName" required><br> 
@@ -18,7 +19,6 @@
 		
 		<input type="submit" value="Register">
 	</form>
-
 </body>
 </html>
 

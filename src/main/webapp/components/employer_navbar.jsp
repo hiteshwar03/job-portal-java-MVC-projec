@@ -113,35 +113,41 @@ form {
 			
 			  <nav>
 				<ul class="nav1">
-					<li><a href="${pageContext.request.contextPath}/employer/employer_dashboard.jsp">Dashboard &nbsp; </a>|</li>
-					<li><a href="${pageContext.request.contextPath}/employer/add_job.jsp">Post Job &nbsp; </a>|</li>
-					<li><a href="#about">View Application</a></li>
-					<li>
-						<form action="">
-							<input type="text" placeholder="Search Jobs here">
-							<button type="submit">
-								<i class="fa-solid fa-magnifying-glass"></i>
-							</button>
-						</form>
-					</li>
+					<c:choose>
+						 <c:when test="${empty sessionScope.user}">
+							
+						  </c:when>
+						  <c:otherwise>
+							<li><a href="${pageContext.request.contextPath}/employer/employer_dashboard.jsp">Dashboard &nbsp; </a>|</li>
+							<li><a href="${pageContext.request.contextPath}/employer/add_job.jsp">Post Job &nbsp; </a>|</li>
+							<li><a href="#about">View Application</a></li>
+							<li>
+								<form action="">
+									<input type="text" placeholder="Search Jobs here">
+									<button type="submit">
+										<i class="fa-solid fa-magnifying-glass"></i>
+									</button>
+								</form>
+							</li>
+						  </c:otherwise>
+					</c:choose>
 				</ul>
+				
 				<ul class="nav2">
 					<li>
-						<a href="${empty sessionScope.user ? '#login' : '#profile'}">
-						   <c:choose>
-						       <c:when test="${not empty sessionScope.user}">
-						           <span id="username">${fn:toUpperCase(sessionScope.user.username)}</span> 
-						 </a>
-						           | Role: <span id="role">${sessionScope.user.role}</span>
-						       </c:when>
-						       <c:otherwise>
-						           <a href="login.jsp">Login</a>&nbsp;&nbsp; | &nbsp;&nbsp;
-						           <a href="register.jsp">Signup</a> 
-						       </c:otherwise>
-						   </c:choose>
-						
-					</li>
-	
+						<li>
+						    <c:choose>
+						        <c:when test="${empty sessionScope.user}">
+						             <a href="${pageContext.request.contextPath}/login.jsp">Login</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+						           	 <a href="${pageContext.request.contextPath}/register.jsp">Signup</a>
+						        </c:when>
+						        <c:otherwise>
+						            <a href="#profile">${fn:toUpperCase(sessionScope.user.username)}</a>
+						            | Role: <span id="role">${sessionScope.user.role}</span>
+						        </c:otherwise>
+						    </c:choose>
+						</li>
+					
 				</ul>
 			</nav>
 				
