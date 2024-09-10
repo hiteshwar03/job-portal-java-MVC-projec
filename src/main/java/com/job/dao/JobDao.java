@@ -135,4 +135,39 @@ public class JobDao {
 		return job;
 	}
 
+	public List<Job> getAllJobsByEmployerId(Long employerId) {
+		String sql = "SELECT job_id, job_title, job_description, location, salary, job_type, status,  posted_on FROM Job where employer_id=?";
+		
+		List<Job> jobs=new ArrayList<Job>();		
+		Job job=null;
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setLong(1, employerId);
+			ResultSet rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				
+				job = new Job();
+
+				job.setJobId(rs.getLong("job_id"));
+				job.setJobTitle(rs.getString("job_title"));
+				job.setJobDescription(rs.getString("job_description"));
+				job.setLocation(rs.getString("location"));
+				job.setJobType(rs.getString("job_type"));
+				job.setStatus(rs.getString("status"));
+				job.setSalary(rs.getDouble("salary"));
+				job.setPostedDate(rs.getTimestamp("posted_on"));
+				jobs.add(job);
+				
+			}
+			return jobs;
+			
+
+		} catch (Exception e) {
+			 e.printStackTrace();  
+
+		}
+		return jobs;
+	}
+
 }

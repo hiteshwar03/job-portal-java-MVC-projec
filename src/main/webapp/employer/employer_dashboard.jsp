@@ -6,59 +6,94 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
+	<style type="text/css">
+		main{
+    width: 80vw;
+    margin: 0 auto;
+    margin-top: 4rem;
+}
+.content{
+    display: flex;
+    gap: 3rem;
+}
+.table{
+    width: 100%;
+    
+    & a{
+        padding: 2px 12px;
+        border-radius:5px;
+        font-size: 15px;
+    }
 
+    &  a#view{
+        color: white;
+        text-decoration: none;
+        background-color: blue;
+    }
+    &  a#edit{
+        color: white;
+        text-decoration: none;
+        background-color: green;
+    }
+    &  a#delete{
+        color: white;
+        text-decoration: none;
+        background-color: red;
+    }
+}
+	</style>
 </head>
 <body>
 	<%@ include file="/components/employer_navbar.jsp"%>  
 	
 	
-	<p>Hello: ${sessionScope.user.username}  (${sessionScope.user.role})</p>  
-	  
-	
-	<p>As an employer, you can manage your job postings and
-		applications here.</p>
-		
+	<main>
+            <h5>As an employer, you can manage your job postings and applications here.</h5>
+            <hr>
+            <div class="content">
+                <aside>
+                <h3>Your Company Details</h3>
+                    <div class="card" style="width: 25rem;">
+                        
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item"><h3>Comapny: ${company.companyName}</h3></li>
+                          <li class="list-group-item"><h5><i class="fa-solid fa-location-dot"></i> ${company.companyAddress}</h5></li>
+                          <li class="list-group-item"><p> <i class="fa-solid fa-envelope"></i> ${company.companyEmail}</p></li>
+                        </ul>
+                    </div>
+                </aside>
 
-	<h3>Comapny Name: ${company.companyName}</h3>
-	<p>Address:  ${company.companyAddress}</p>
-	<p>Email:  ${company.companyEmail}</p>
-
-	<!-- Displaying posted jobs -->
-	<h3>Your Posted Jobs</h3>
-	<table class="table">
-				<thead>
-					<tr>
-						<th>Job Title</th>
-						<th>Location</th>
-						<th>Job Type</th>
-						<th>Posted date</th>
-						<th>Status</th>
-						<th>Company</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-
-
-					<c:forEach var="job" items="${allJobs}">
-						<tr>
+                <section>
+                <h3>Your Posted Jobs</h3>
+                    <table class="table table-striped">
+                        <tr >
+                           <th>Job Id</th>
+                           <th>Job Title</th>
+							<th>Location</th>
+							<th>Job Type</th>
+							<th>Posted date</th>
+							<th>Status</th>
+							<th>Company</th>
+							<th width="1rem">Action</th>
+                        </tr>
+                        <c:forEach var="job" items="${allJobs}">
+                        <tr>
+                            <td>${job.jobId}</td>
 							<td>${job.jobTitle}</td>
 							<td>${job.location}</td>
 							<td>${job.jobType}</td>
 							<td>${job.postedDate}</td>
 							<td>${job.status}</td>
 							<td>${job.company.companyName}</td>
-							
-							<td><a href="view-job?id=${job.jobId}">View</a> | <a
-								href="edit-job?id=${job.jobId}">Edit</a> | <a
-								href="delete_job.jsp?id=${job.jobId}">delete</a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-
-
-	
+                            <td><a href="view-job?id=${job.jobId}" id="view">View</a></td>
+                            <td><a href="view-job?id=${job.jobId}" id="edit">Edit</a></td>
+                            <td><a href="view-job?id=${job.jobId}" id="delete">Delete</a></td>
+                         </tr>
+                         </c:forEach>
+                    </table>
+                </section>
+            </div>
+        </main>	
 </body>
 </html>
 
