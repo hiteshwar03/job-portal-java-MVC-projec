@@ -101,6 +101,9 @@ form {
 #role{
 	font-weight: 200;
 }
+#logout{
+	color:orange;
+}
 </style>
 
 </head>
@@ -118,7 +121,7 @@ form {
 							
 						  </c:when>
 						  <c:otherwise>
-							<li><a href="${pageContext.request.contextPath}/employer/employer_dashboard.jsp">Dashboard &nbsp; </a>|</li>
+							<li><a href="${pageContext.request.contextPath}/employer-dashboard">Dashboard &nbsp; </a>|</li>
 							<li><a href="${pageContext.request.contextPath}/employer/add_job.jsp">Post Job &nbsp; </a>|</li>
 							<li><a href="#about">View Application</a></li>
 							<li>
@@ -144,6 +147,8 @@ form {
 						        <c:otherwise>
 						            <a href="#profile">${fn:toUpperCase(sessionScope.user.username)}</a>
 						            | Role: <span id="role">${sessionScope.user.role}</span>
+						            | <a href="${pageContext.request.contextPath}/logout" id="logout">Logout</a>
+						            
 						        </c:otherwise>
 						    </c:choose>
 						</li>
