@@ -1,37 +1,131 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+
+
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<%@ include file="/components/common_style.jsp" %>
-<style type="text/css">
-	nav ul{
-		display: flex;
-		gap:1rem;
-		background-color: red;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="https://kit.fontawesome.com/846c497550.js"
+	crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+	rel="stylesheet">
+<title>Document</title>
+<%@ include file="/components/common_style.jsp"%>
+<style>
+/* styles.css */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Poppins", sans-serif;
+	font-weight: 300;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	width: 80vw;
+	margin: 0 auto;
+	background-color: black;
+	padding: 8px;
+	height:3rem;
+	
+	& li {
+		list-style: none;
+		color:white;
+	}
+
+	& a {
+		text-decoration: none;
 		color: white;
+		font-size: 1.2rem;
+		
+		&:hover{
+			color:red;
+		}
 	}
-	li{
-		list-style-type: none;
+	
+}
+
+.nav1 {
+	text-align: center;
+	display: flex;
+	gap: 1rem;
+	justify-content: start;
+}
+
+.nav2 {
+	text-align: center;
+	display: flex;
+	gap: 1rem;
+	justify-content: space-between;
+	margin-right: 3rem;
+}
+
+
+.logo {
+	background-color: darkgreen;
+	color: white;
+	height: 5rem;
+	margin: 0 auto;
+	width: 80%;
+	text-align: center;
+	font-size: 1.5rem;
+	padding-top: 1rem;
+}
+
+form { 
+	&>input { 
+		width:15rem;
+		height: 1.8rem;
+		border-radius: 2px;
+		border: none;
 	}
+
+	&>button {
+		width: 2.5rem;
+		height: 1.9rem;
+		border-radius: 2px;
+		border:none;
+		background-color: #FFBF00;
+	}
+
+}
+#username{
+	font-weight: 600;
+}
+#role{
+	font-weight: 200;
+}
 </style>
 </head>
 <body>
-	<nav>
-		<ul>
-			<li><a href="">Home</a></li>
-			<li><a href="">Applied Jobs</a></li>	
-			<li><a href="">Logout</a></li>	
-			<li>
-				<form action="">
-					<input type="text" placeholder="Search jobs here">
-					<input type="submit" value="Search">
-				</form>
-			</li>
-			<li>Welcome: ${sessionScope.user.username} (${sessionScope.user.role})</li>
-		</ul>
-	</nav>
+	<div>
+		<div class="logo">
+			<h1>Online Job Portal</h1>
+		</div>
+		<nav>
+			<ul class="nav1">
+				<li><a href="#home">Home &nbsp;</a>|</li>
+				<li><a href="#contact">All Jobs &nbsp;</a>|</li>
+				<li><a href="#about">Applied Jobs</a></li>
+				<li>
+					<form action="">
+						<input type="text" placeholder="Search Jobs here">
+						<button type="submit">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</form>
+				</li>
+			</ul>
+			<ul class="nav2">
+				<li><a href="#login"><i class="fa-solid fa-user-tie"></i> <span id="username">${sessionScope.user.username}</span> | Role : <span id="role">${sessionScope.user.role}</span></a></li>
+			</ul>
+		</nav>
+	</div>
 </body>
 </html>
