@@ -9,6 +9,10 @@ public class Company {
     private String companyWebsite;
     private String companyEmail;
     private Timestamp addedOn;
+    private String companySize;
+    private String foundedYear;
+    private String industryType;
+    
     
 	public Long getCompanyId() {
 		return companyId;
@@ -46,8 +50,31 @@ public class Company {
 	public void setAddedOn(Timestamp addedOn) {
 		this.addedOn = addedOn;
 	}
+	
+	public String getCompanySize() {
+		return companySize;
+	}
+	public void setCompanySize(String companySize) {
+		this.companySize = companySize;
+	}
+	public String getFoundedYear() {
+		return foundedYear;
+	}
+	public void setFoundedYear(String foundedYear) {
+		this.foundedYear = foundedYear;
+	}
+	public String getIndustryType() {
+		return industryType;
+	}
+	public void setIndustryType(String industryType) {
+		this.industryType = industryType;
+	}
+	public Company() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public Company(Long companyId, String companyName, String companyAddress, String companyWebsite,
-			String companyEmail, Timestamp addedOn) {
+			String companyEmail, Timestamp addedOn, String companySize, String foundedYear, String industryType) {
 		super();
 		this.companyId = companyId;
 		this.companyName = companyName;
@@ -55,18 +82,11 @@ public class Company {
 		this.companyWebsite = companyWebsite;
 		this.companyEmail = companyEmail;
 		this.addedOn = addedOn;
+		this.companySize = companySize;
+		this.foundedYear = foundedYear;
+		this.industryType = industryType;
 	}
-	public Company() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	@Override
-	public String toString() {
-		return "Company [companyId=" + companyId + ", companyName=" + companyName + ", companyAddress=" + companyAddress
-				+ ", companyWebsite=" + companyWebsite + ", companyEmail=" + companyEmail + ", addedOn=" + addedOn
-				+ "]";
-	}
-    
+	
     
     
 }

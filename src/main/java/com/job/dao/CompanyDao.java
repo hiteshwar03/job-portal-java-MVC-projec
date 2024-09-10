@@ -21,7 +21,7 @@ public class CompanyDao {
 	}
 
 	public boolean addCompany(Company company) {
-		String sql = "INSERT INTO Company (employer_id, company_name, company_address, company_website, company_email ) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Company (employer_id, company_name, company_address, company_website, company_email,company_size, founded_year, industry ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -31,6 +31,10 @@ public class CompanyDao {
 			stmt.setString(3, company.getCompanyAddress());
 			stmt.setString(4, company.getCompanyWebsite());
 			stmt.setString(5, company.getCompanyEmail());
+			stmt.setString(6, company.getCompanySize());
+			stmt.setString(7, company.getFoundedYear());
+			stmt.setString(8, company.getIndustryType());
+			
 			
 			int res= stmt.executeUpdate();
 			

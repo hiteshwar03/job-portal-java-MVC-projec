@@ -3,27 +3,26 @@
 	<head>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<style>
-			
+			main{;
+				margin:0 auto;
+			}
 			.main-content{
 				display: flex;
 				flex-direction:column;
 				justify-content: center;
 				
-				& #logo{
-					margin-left:6rem;
-				}
 			}
 			
 			.login-form{
-				padding: 2rem;
+				padding: 2rem 4rem;
 				border-radius: 8px;
-				width:30%;
+				width:35%;
 				margin:0 auto;
 				background-color:#F7F7F8;
 				
 				& .btn-register{
 					background-color:#3572EF;
-					width:20.8rem;
+					width:25.7rem;
 					border:none;
 					color:white;
 					height:35px;
@@ -40,7 +39,7 @@
 			<div class="main-content">
 				
 				<div class="login-form">
-					<h2>Create an account</h2>
+					<h2>Create an account</h2><br>
 					<form action="register" method="POST">
 						<div class="mb-3">
 						  	<label for="exampleInputEmail1" class="form-label">Username:</label>

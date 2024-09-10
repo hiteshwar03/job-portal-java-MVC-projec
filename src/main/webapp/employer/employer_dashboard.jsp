@@ -22,23 +22,32 @@
     & a{
         padding: 2px 12px;
         border-radius:5px;
-        font-size: 15px;
+        font-size: 15px
+		
     }
+    .fa-eye{
+    	color:blue;
+    }
+    .fa-pen-to-square{
+    	color:green;
+    }
+    .fa-trash{
+    	color:red;
+    }
+    
+    
 
     &  a#view{
-        color: white;
         text-decoration: none;
-        background-color: blue;
+        color: blue;
     }
     &  a#edit{
-        color: white;
         text-decoration: none;
-        background-color: green;
+        color: green;
     }
     &  a#delete{
-        color: white;
         text-decoration: none;
-        background-color: red;
+        color: red;
     }
 }
 	</style>
@@ -83,9 +92,9 @@
 							<td>${job.jobType}</td>
 							<td>${job.postedDate}</td>
 							<td>${job.status}</td>
-                            <td><a href="view-job?id=${job.jobId}" id="view"><i class="fa-regular fa-eye"></i></a></td>
-                            <td><a href="view-job?id=${job.jobId}" id="edit"><i class="fa-regular fa-pen-to-square"></i></a></td>
-                            <td><a href="view-job?id=${job.jobId}" id="delete"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a href="view-job?id=${job.jobId}" id="view"><i class="fa-regular fa-eye"></i> View</a></td>
+                            <td><a href="view-job?id=${job.jobId}" id="edit"><i class="fa-regular fa-pen-to-square"></i> Edit</a></td>
+                            <td><a href="view-job?id=${job.jobId}" id="delete"><i class="fa-solid fa-trash"></i> Delete</a></td>
                          </tr>
                          </c:forEach>
                     </table>

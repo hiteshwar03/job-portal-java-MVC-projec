@@ -27,6 +27,9 @@ public class AddCompanyServlet extends HttpServlet {
         String companyAddress = request.getParameter("companyAddress");  
         String companyWebsite = request.getParameter("companyWebsite");
         String companyEmail = request.getParameter("companyEmail");  
+        String companySize = request.getParameter("companySize");  
+        String foundedYear = request.getParameter("foundedYear");  
+        String industry = request.getParameter("industry");  
         
         HttpSession session=request.getSession();
         User user =(User) session.getAttribute("user");
@@ -38,12 +41,14 @@ public class AddCompanyServlet extends HttpServlet {
         company.setCompanyAddress(companyAddress);
         company.setCompanyWebsite(companyWebsite);
         company.setCompanyEmail(companyEmail);
+        company.setCompanySize(companySize);
+        company.setFoundedYear(foundedYear);
+        company.setIndustryType(industry);
         
         CompanyDao companyDao=new CompanyDao();
         companyDao.addCompany(company);
         
-        RequestDispatcher dispatcher=request.getRequestDispatcher("employer/employer_dashboard.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect(request.getContextPath()+"/employer-dashboard");
         
     }
 }
