@@ -11,11 +11,22 @@
     width: 80vw;
     margin: 0 auto;
     margin-top: 4rem;
+    background-color:#F7F7F8;
+    height:100vh;
+    padding:1rem;
 }
 .content{
     display: flex;
-    gap: 3rem;
+    gap: 2rem;
 }
+aside{
+	width:27%;
+}
+
+.table-jobs{
+	width:71%;
+}
+
 .table{
     width: 100%;
     
@@ -62,18 +73,19 @@
             <div class="content">
                 <aside>
                 <h3></h3>
-                    <div class="card" style="width: 25rem;">
+                    <div class="card">
                         
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item"><h3>Comapny: ${company.companyName}</h3></li>
                           <li class="list-group-item"><h5><i class="fa-solid fa-location-dot"></i> ${company.companyAddress}</h5></li>
-                          <li class="list-group-item"><p> <i class="fa-solid fa-envelope"></i> ${company.companyEmail}</p></li>
+                          <li class="list-group-item"><h6> <i class="fa-solid fa-envelope"></i> ${company.companyEmail}</h6></li>
+                          <li class="list-group-item"><h6><i class="fa-solid fa-globe"></i><a href="http://www.google.com"> ${company.companyWebsite}</a></h6></li>
                         </ul>
                     </div>
                 </aside>
 
-                <section>
-                <h3>Your Posted Jobs</h3>
+                <section class="table-jobs">
+                <h4>Your Posted Jobs</h4>
                     <table class="table table-striped">
                         <tr >
                            <th>Job Id</th>
@@ -103,6 +115,5 @@
         </main>	
 </body>
 </html>
-
 
 

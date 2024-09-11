@@ -65,6 +65,8 @@ public class CompanyDao {
 	        	company.setCompanyName(rs.getString("company_name"));
 	        	company.setCompanyAddress(rs.getString("company_address"));
 	        	company.setCompanyEmail(rs.getString("company_email"));
+	        	company.setCompanyWebsite(rs.getString("company_website"));
+	        	
 	        	return company;
 	        }
 		} catch (Exception e) {

@@ -96,7 +96,7 @@ form {
 }
 
 #username{
-	font-weight: 600;
+	font-weight: 700;
 }
 #role{
 	font-weight: 200;
@@ -145,7 +145,7 @@ form {
 						           	 <a href="${pageContext.request.contextPath}/register.jsp">Signup</a>
 						        </c:when>
 						        <c:otherwise>
-						            <a href="#profile">${fn:toUpperCase(sessionScope.user.username)}</a>
+						            <a href="#profile" id="username"><i class="fa-solid fa-user-tie"></i> ${fn:toUpperCase(sessionScope.user.username)}</a>
 						            | Role: <span id="role">${sessionScope.user.role}</span>
 						            | <a href="${pageContext.request.contextPath}/logout" id="logout">Logout</a>
 						            
