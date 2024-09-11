@@ -19,7 +19,7 @@ import com.job.model.Candidate;
 import com.job.model.User;
 
 
-@WebServlet("/apply-job")
+@WebServlet("/candidate/apply-job")
 @MultipartConfig(
 	    fileSizeThreshold = 1024 * 1024,  // 1 MB
 	    maxFileSize = 10 * 1024 * 1024,   // 10 MB

@@ -44,7 +44,7 @@
 	<main>
 			<h2 class="heading">Post Your Job</h2>
 		<div class="main-content">
-					<form action="${pageContext.request.contextPath}/add-job" method="POST">
+					<form action="${pageContext.request.contextPath}/employer/add-job" method="POST">
 				 		<section class="section1">
 			
 							<div class="mb-3">

@@ -121,7 +121,7 @@ form {
 							
 						  </c:when>
 						  <c:otherwise>
-							<li><a href="${pageContext.request.contextPath}/candidate-dashboard">Home &nbsp; </a>|</li>
+							<li><a href="${pageContext.request.contextPath}/candidate/candidate-dashboard">Home &nbsp; </a>|</li>
 							<li><a href="${pageContext.request.contextPath}/candidate/apply_job.jsp">Applied Job &nbsp; </a>|</li>
 							<li><a href="#about">All Jobs</a></li>
 							<li>

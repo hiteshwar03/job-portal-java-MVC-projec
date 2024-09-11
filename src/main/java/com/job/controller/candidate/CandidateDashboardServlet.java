@@ -17,7 +17,7 @@ import com.job.model.Job;
 import com.job.model.User;
 
 
-@WebServlet("/candidate-dashboard")
+@WebServlet("/candidate/candidate-dashboard")
 public class CandidateDashboardServlet extends HttpServlet {
  
 	private static final long serialVersionUID = 1L;
@@ -37,9 +37,10 @@ public class CandidateDashboardServlet extends HttpServlet {
 
 
 		request.setAttribute("allJobs", allJobsWithCompany);
-    	
-        RequestDispatcher dispatcher=request.getRequestDispatcher("candidate/jobSeeker_dashboard.jsp");
-        dispatcher.forward(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/candidate/jobSeeker_dashboard.jsp");//forward request attribute value
+		dispatcher.forward(request, response);
+		
+//    	response.sendRedirect(request.getContextPath()+"/candidate/jobSeeker_dashboard.jsp"); //does not forward request attribute
         
     }
 }

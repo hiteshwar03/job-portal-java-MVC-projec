@@ -14,7 +14,7 @@ import com.job.model.Job;
 import com.job.model.User;
 
 
-@WebServlet("/add-job")
+@WebServlet("/employer/add-job")
 public class AddJobServlet extends HttpServlet {
     
 	private static final long serialVersionUID = 1L;
@@ -54,7 +54,7 @@ public class AddJobServlet extends HttpServlet {
         JobDao jobDao=new JobDao();
         jobDao.addJob(job);
         
-   	 	response.sendRedirect(request.getContextPath()+"/employer-dashboard"); //context path= http://localhost:8080/jobPortal
+   	 	response.sendRedirect(request.getContextPath()+"/employer/employer-dashboard"); //context path= http://localhost:8080/jobPortal
 	 
         
     }

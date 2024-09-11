@@ -16,7 +16,7 @@ import com.job.model.Company;
 import com.job.model.User;
 
 
-@WebServlet("/add-company")
+@WebServlet("/employer/add-company")
 public class AddCompanyServlet extends HttpServlet {
   
 	private static final long serialVersionUID = 1L;
@@ -48,7 +48,7 @@ public class AddCompanyServlet extends HttpServlet {
         CompanyDao companyDao=new CompanyDao();
         companyDao.addCompany(company);
         
-        response.sendRedirect(request.getContextPath()+"/employer-dashboard");
+        response.sendRedirect(request.getContextPath()+"/employer/employer-dashboard");
         
     }
 }

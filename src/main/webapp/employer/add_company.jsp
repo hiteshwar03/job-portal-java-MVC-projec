@@ -23,7 +23,7 @@
 	<main>
 		<div class="main-content">
 			<h2>Register Your Company</h2><br>
-			<form action="${pageContext.request.contextPath}/add-company" method="POST">
+			<form action="${pageContext.request.contextPath}/employer/add-company" method="POST">
 			
 				<div class="mb-3">
 				  	<label for="cname" class="form-label">Company Name:</label>

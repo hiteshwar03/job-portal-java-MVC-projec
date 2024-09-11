@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
         		 
         		 //if company is already added
         		 if(companyExist!=null)
-        			 response.sendRedirect(request.getContextPath()+"/employer-dashboard"); //context path= http://localhost:8080/jobPortal
+        			 response.sendRedirect(request.getContextPath()+"/employer/employer-dashboard"); //context path= http://localhost:8080/jobPortal
     			 
         		         		 
 //        		 if company not already added(register company)
@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
         		 
         		 
              } else if (loggedUser.getRole().equals("JobSeeker")) {
-            	 response.sendRedirect(request.getContextPath()+"/candidate-dashboard");
+            	 response.sendRedirect(request.getContextPath()+"/candidate/candidate-dashboard");
              } else {
                  response.sendRedirect("error.jsp");  
              }

@@ -13,7 +13,7 @@ import com.job.dao.JobDao;
 import com.job.model.Job;
 
 
-@WebServlet("/view-job-details")
+@WebServlet("/candidate/view-job-details")
 public class ViewJobDetailsServlet extends HttpServlet {
    
 	private static final long serialVersionUID = 1L;
@@ -28,7 +28,7 @@ public class ViewJobDetailsServlet extends HttpServlet {
 
 		request.setAttribute("job", jobById);
     	
-        RequestDispatcher dispatcher=request.getRequestDispatcher("candidate/view_job_details.jsp");
+        RequestDispatcher dispatcher=request.getRequestDispatcher("/candidate/view_job_details.jsp");
         dispatcher.forward(request, response);
         
     }

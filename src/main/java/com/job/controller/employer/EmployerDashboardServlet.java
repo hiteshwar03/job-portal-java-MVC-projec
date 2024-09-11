@@ -18,7 +18,7 @@ import com.job.model.Job;
 import com.job.model.User;
 
 
-@WebServlet("/employer-dashboard")
+@WebServlet("/employer/employer-dashboard")
 public class EmployerDashboardServlet extends HttpServlet {
     
 	private static final long serialVersionUID = 1L;
@@ -37,7 +37,7 @@ public class EmployerDashboardServlet extends HttpServlet {
 		
 		request.setAttribute("allJobs", allJobsByEmployerId);
     	request.setAttribute("company", company);
-        RequestDispatcher dispatcher=request.getRequestDispatcher("employer/employer_dashboard.jsp");
+        RequestDispatcher dispatcher=request.getRequestDispatcher("/employer/employer_dashboard.jsp");
         dispatcher.forward(request, response);
         
     }
