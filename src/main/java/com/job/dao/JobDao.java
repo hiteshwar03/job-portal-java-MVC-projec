@@ -220,4 +220,24 @@ public class JobDao {
 		return false;
 	}
 
+	public boolean deleteJobById(int jobid) {
+		String sql = "delete from Job where job_id="+jobid;
+
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+
+			int res = stmt.executeUpdate();
+
+			if (res > 0) {
+				return true;
+			}
+
+			stmt.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
 }
