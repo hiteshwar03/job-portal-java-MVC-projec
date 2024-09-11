@@ -102,7 +102,7 @@ public class JobDao {
 	}
 
 	public Job getJobById(int jobId) {
-		String sql = "SELECT j.job_id, j.job_title, j.job_description, j.location, j.salary, j.job_type, j.status,  j.posted_on, c.company_id, c.company_name FROM Job j JOIN Company c ON j.employer_id = c.employer_id where j.job_id=?";
+		String sql = "SELECT j.job_id, j.job_title, j.job_description, j.location, j.salary, j.job_type, j.status, j.posted_on, j.experience, j.requirements, j.responsibilities, j.openings, j.benefits, c.company_id, c.company_name, c.company_address FROM Job j JOIN Company c ON j.employer_id = c.employer_id where j.job_id=?";
 
 		Job job=null;
 		try {
@@ -115,6 +115,7 @@ public class JobDao {
 				Company company = new Company();
 				company.setCompanyId(rs.getLong("company_id"));
 				company.setCompanyName(rs.getString("company_name"));
+				company.setCompanyAddress(rs.getString("company_address"));
 
 				job = new Job();
 
@@ -126,6 +127,12 @@ public class JobDao {
 				job.setStatus(rs.getString("status"));
 				job.setSalary(rs.getDouble("salary"));
 				job.setPostedDate(rs.getTimestamp("posted_on"));
+				job.setExperience(rs.getString("experience"));
+				job.setRequirement(rs.getString("requirements"));
+				job.setResponisibilities(rs.getString("responsibilities"));
+				job.setBenefits(rs.getString("benefits"));
+				job.setVacancy(rs.getString("openings"));
+				
 				job.setCompany(company);
 				
 				return job;

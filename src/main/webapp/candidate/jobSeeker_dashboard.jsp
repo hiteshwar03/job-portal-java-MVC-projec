@@ -10,6 +10,7 @@
 				main{
 				margin:0 auto;
 				height: auto;
+				
 			}
 			.container{
 				display: flex;

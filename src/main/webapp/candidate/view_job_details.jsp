@@ -1,39 +1,171 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+	<head>
+		<title>Insert title here</title>
+		<style type="text/css">
+			main {
+		  width: 80vw;
+		  margin: 0 auto;
+		  height: 100%;
+		  background-color: rgb(247, 249, 250);
+		  padding: 1rem 5rem;
+	  }
+	  .main-content {
+		width:60%;
+		margin: 0 auto;
+		box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+		padding: 2rem;
+		background-color: white;
+		border-radius: 30px;
+		display: flex;
+		flex-direction: column;
+		color: rgb(95, 102, 120);
+	  }
+	  .company {
+		width: 50%;
+		display: flex;
+		justify-content: space-between;
+	  }
+	  .job-title {
+		width: 50%;
+		display: flex;
+		justify-content: space-between;
+		font-size:0.6rem;
+		}
+		.title{
+		  color: rgb(38, 18, 35);
+	 	}
+	  .horizontal-line {
+		width: 100%;
+		height: 1px;
+		background-color: gray;
+		}
+
+		.job-requirements, .job-responsibilities , .job-benefits {
+			background-color: rgb(247, 249, 250);
+			box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+			margin-top: 1rem;
+			padding: 1rem;
+			border-radius: 10px;
+			font-size: 1.1rem;
+		}
+		
+		.experience-money {
+			display: flex;
+			gap: 9rem;
+		}
+		.total-vacancy, .posted-date, .status, .job-location {
+			font-size: 1.1rem;
+		}
+		.job-location{
+			margin-bottom: 3rem;
+		}
+		.total-vacancy{
+			margin-top: 2rem;
+		}
+		.total-vacancy span, .posted-date span, .status span, .job-location span{
+			font-weight: 600;
+			color: rgb(38, 18, 35);
+		}
+		#form2{
+			margin-top: 2rem;
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
+		#skill-box{
+			width: 50%;
+		}
+		#btn-apply{
+			margin: 0 auto;
+			width: 14%;
+			background-color: blue;
+			border: none;
+			color: white;
+			padding: 0.2rem 1rem;
+			cursor: pointer; 
+		}
+		#company-name{
+			font-size: 01rem;
+		}
+		</style>
+	</head>
 <body>	
-<%@ include file="/components/candidate_navbar.jsp"%> 
+
+	<%@ include file="/components/candidate_navbar.jsp"%> 
 	
-	<h2>Apply for this job ? </h2>
-	<h3>Title: ${job.jobTitle}</h3>
-	<h4>Job Details for: ${job.company.companyName}</h4>
+	<main>
+		<div class="main-content">
+			<div>
+				<h2>Want to apply for this job ? </h2>
+				<hr>
+			</div>
+			
+			<div class="job-title">
+				<h3 class="title">${job.jobTitle} </h3>
+				<h4>${job.jobType}</h4>
+			</div>
+			<div class="company">
+				<h4 id="company-name">${job.company.companyName},	<i class="fas fa-map-marker-alt"></i> ${job.company.companyAddress}</h4>
+			</div>
+			
+			
+			<div class="experience-money">
+				<p>Experience: <span>${job.experience}</span></p>
+				<p><i class="fas fa-money-bill-alt"></i>  &#8377; ${job.salary} /- per anum</p>
+			</div>
+			
+			<div class="horizontal-line"></div>
 	
-	
-	<h5>Job Details for: ${job.jobDescription}</h5>
-	<h5>Job Details for: ${job.location}</h5>
-	<h5>Job Details for: ${job.salary}</h5>
-	<h5>Job Details for: ${job.status}</h5>
-	<h5>Job Details for: ${job.postedDate}</h5>
-	
-	
-	<form action="apply-job" method="post" enctype="multipart/form-data">
-		
-		<input type="hidden" name="jobId" value="${job.jobId }" required><br> 
+			<div class="total-vacancy">
+				<p>Total Vacancy: <span>${job.vacancy}</span></p>
+			</div>
+			<div class="posted-date">
+				<p>Posted on: <span>${job.postedDate}</span></p>
+			</div>
+			<div class="status">
+				<p>Status: <span>${job.status}</span></p>
+			</div>
+			
+			<div class="job-location">
+				<p>Job Location: <span>${job.location}</span></p>
+			</div>
+			
+			
+
+			<div class="job-requirements">
+				<strong>Requirements:</strong>
+				<p>${job.requirement}</p>
+			</div>
+			
+			<div class="job-responsibilities">
+				<strong>Responsibilities:</strong>
+				<p>${job.responisibilities}</p>
+			</div>
+
+			<div class="job-benefits">
+				<strong>Benefits:</strong>
+				<p>${job.benefits}</p>
+			</div>
+			<form action="apply-job" method="post" enctype="multipart/form-data" id="form2">
 				
-		<label>Skills: </label> 
-		<input type="text" name="skills" required><br> 
-		
-		<label for="username">Resume</label>
-		<input type="file" name="resume" accept=".pdf"> <br> 
-		
-		
-		 <input type="submit" value="Apply">
-	</form>
-	
+				<input type="hidden" name="jobId" value="${job.jobId }" required><br> 
+						
+				<div>
+					<label>Skills: </label> 
+					<input type="text" name="skills" id="skill-box" required>
+				</div>
+				
+				<div>
+					<label for="username">Resume</label>
+					<input type="file" name="resume" accept=".pdf">
+				</div>
+				
+				 <input type="submit" value="Apply" id="btn-apply">
+			</form>
+		</div>
+    </main>
 </body>
 </html>
