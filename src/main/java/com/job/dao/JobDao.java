@@ -58,7 +58,7 @@ public class JobDao {
 	}
 
 	public List<Job> getAllJobsWithCompany() {
-		String sql = "SELECT j.job_id, j.job_title, j.job_description, j.location, j.salary, j.job_type, j.status,  j.posted_on, c.company_id, c.company_name FROM Job j JOIN Company c ON j.employer_id = c.employer_id";
+		String sql = "SELECT j.job_id, j.job_title, j.job_description, j.location, j.salary, j.job_type, j.status,  j.posted_on, j.experience, c.company_id, c.company_name FROM Job j JOIN Company c ON j.employer_id = c.employer_id";
 //		String sql = "SELECT j.job_id, j.title, j.description, j.location, j.posted_date, e.company_name FROM jobs j JOIN employers e ON j.eid = e.employer_id where e.employer_id=?;";
 
 		List<Job> jobs = new ArrayList<>();
@@ -84,6 +84,7 @@ public class JobDao {
 				job.setStatus(rs.getString("status"));
 				job.setSalary(rs.getDouble("salary"));
 				job.setPostedDate(rs.getTimestamp("posted_on"));
+				job.setExperience(rs.getString("experience"));
 				job.setCompany(company);
 
 				jobs.add(job);
@@ -141,7 +142,7 @@ public class JobDao {
 	}
 
 	public List<Job> getAllJobsByEmployerId(Long employerId) {
-		String sql = "SELECT job_id, job_title, job_description, location, salary, job_type, status,  posted_on FROM Job where employer_id=?";
+		String sql = "SELECT job_id, job_title, job_description, location, salary, job_type, status, posted_on, experience FROM Job where employer_id=?";
 		
 		List<Job> jobs=new ArrayList<Job>();		
 		Job job=null;
@@ -162,6 +163,8 @@ public class JobDao {
 				job.setStatus(rs.getString("status"));
 				job.setSalary(rs.getDouble("salary"));
 				job.setPostedDate(rs.getTimestamp("posted_on"));
+				job.setExperience(rs.getString("experience"));
+				
 				jobs.add(job);
 				
 			}

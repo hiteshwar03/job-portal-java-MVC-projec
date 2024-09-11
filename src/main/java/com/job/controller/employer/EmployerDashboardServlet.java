@@ -35,7 +35,6 @@ public class EmployerDashboardServlet extends HttpServlet {
 		JobDao jobDao=new JobDao();
 		List<Job> allJobsByEmployerId = jobDao.getAllJobsByEmployerId(user.getUserId());
 		
-		
 		request.setAttribute("allJobs", allJobsByEmployerId);
     	request.setAttribute("company", company);
         RequestDispatcher dispatcher=request.getRequestDispatcher("employer/employer_dashboard.jsp");

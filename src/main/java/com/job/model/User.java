@@ -86,6 +86,12 @@ public class User{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", phone=" + phone
+				+ ", email=" + email + ", role=" + role + ", status=" + status + ", jobs=" + jobs + ", applications="
+				+ applications + "]";
+	}
 
   
     

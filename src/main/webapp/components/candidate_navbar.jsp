@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-
 
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <script src="https://kit.fontawesome.com/846c497550.js"
 	crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,22 +13,34 @@
 	href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 	rel="stylesheet">
 <title>Document</title>
-<%@ include file="/components/common_style.jsp"%>
+<%@ include file="/components/common_style.jsp" %>
 <style>
 /* styles.css */
-body {
+html {
 	margin: 0;
 	padding: 0;
 	font-family: "Poppins", sans-serif;
 	font-weight: 300;
 }
-
-nav {
-	display: flex;
-	justify-content: space-between;
+header{
 	width: 80vw;
 	margin: 0 auto;
-	background-color: black;
+	display:flex;
+	gap:1rem;
+	justify-content: space-between;
+	align-items: end;
+}
+
+#logo {
+	width:10%
+}
+
+nav {
+	width:90%;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+	background-color: #3572EF;
 	padding: 8px;
 	height:3rem;
 	
@@ -42,13 +52,11 @@ nav {
 	& a {
 		text-decoration: none;
 		color: white;
-		font-size: 1.2rem;
 		
 		&:hover{
 			color:red;
 		}
 	}
-	
 }
 
 .nav1 {
@@ -67,21 +75,12 @@ nav {
 }
 
 
-.logo {
-	background-color: darkgreen;
-	color: white;
-	height: 5rem;
-	margin: 0 auto;
-	width: 80%;
-	text-align: center;
-	font-size: 1.5rem;
-	padding-top: 1rem;
-}
+
 
 form { 
 	&>input { 
-		width:15rem;
 		height: 1.8rem;
+		width:16rem;
 		border-radius: 2px;
 		border: none;
 	}
@@ -91,41 +90,73 @@ form {
 		height: 1.9rem;
 		border-radius: 2px;
 		border:none;
-		background-color: #FFBF00;
+		background-color: #9eb3358b;
 	}
 
 }
+
 #username{
-	font-weight: 600;
+	font-weight: 700;
 }
 #role{
 	font-weight: 200;
 }
+#logout{
+	color:orange;
+}
 </style>
+
 </head>
 <body>
-	<div>
-		<div class="logo">
-			<h1>Online Job Portal</h1>
-		</div>
-		<nav>
-			<ul class="nav1">
-				<li><a href="#home">Home &nbsp;</a>|</li>
-				<li><a href="#contact">All Jobs &nbsp;</a>|</li>
-				<li><a href="#about">Applied Jobs</a></li>
-				<li>
-					<form action="">
-						<input type="text" placeholder="Search Jobs here">
-						<button type="submit">
-							<i class="fa-solid fa-magnifying-glass"></i>
-						</button>
-					</form>
-				</li>
-			</ul>
-			<ul class="nav2">
-				<li><a href="#login"><i class="fa-solid fa-user-tie"></i> <span id="username">${sessionScope.user.username}</span> | Role : <span id="role">${sessionScope.user.role}</span></a></li>
-			</ul>
-		</nav>
-	</div>
+
+	   	<header>
+			<div id="logo">
+				<img alt="" src="https://logodix.com/logo/1038127.jpg" width="140px">
+			</div>
+			
+			  <nav>
+				<ul class="nav1">
+					<c:choose>
+						 <c:when test="${empty sessionScope.user}">
+							
+						  </c:when>
+						  <c:otherwise>
+							<li><a href="${pageContext.request.contextPath}/candidate-dashboard">Home &nbsp; </a>|</li>
+							<li><a href="${pageContext.request.contextPath}/candidate/apply_job.jsp">Applied Job &nbsp; </a>|</li>
+							<li><a href="#about">All Jobs</a></li>
+							<li>
+								<form action="">
+									<input type="text" placeholder="Search Jobs here">
+									<button type="submit">
+										<i class="fa-solid fa-magnifying-glass"></i>
+									</button>
+								</form>
+							</li>
+						  </c:otherwise>
+					</c:choose>
+				</ul>
+				
+				<ul class="nav2">
+					<li>
+						<li>
+						    <c:choose>
+						        <c:when test="${empty sessionScope.user}">
+						             <a href="${pageContext.request.contextPath}/login.jsp">Login</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+						           	 <a href="${pageContext.request.contextPath}/register.jsp">Signup</a>
+						        </c:when>
+						        <c:otherwise>
+						            <a href="view-profile" id="username"><i class="fa-solid fa-user-tie"></i> ${fn:toUpperCase(sessionScope.user.username)}</a>
+						            | Role: <span id="role">${sessionScope.user.role}</span>
+						            | <a href="${pageContext.request.contextPath}/logout" id="logout">Logout</a>
+						            
+						        </c:otherwise>
+						    </c:choose>
+						</li>
+					
+				</ul>
+			</nav>
+				
+	</header>
+	<hr>
 </body>
 </html>
