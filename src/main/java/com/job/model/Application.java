@@ -6,12 +6,13 @@ public class Application {
 	private int applicationId;
 	private Long candidateId; // FK to Candidate
 	private Long jobId; // FK to Job
+	private Long userid;
 	private String status; // 'pending', 'accepted', 'rejected'
 	private Timestamp applicationDate;
 	
 	private Job job;
 	private User candidate;
-	
+		
 	public int getApplicationId() {
 		return applicationId;
 	}
@@ -50,23 +51,21 @@ public class Application {
 	public void setJob(Job job) {
 		this.job = job;
 	}
+	
 	public User getCandidate() {
 		return candidate;
 	}
 	public void setCandidate(User candidate) {
 		this.candidate = candidate;
 	}
-	public Application(int applicationId, Long candidateId, Long jobId, 
-			Timestamp applicationDate, String status, Job job, User candidate) {
-		super();
-		this.applicationId = applicationId;
-		this.candidateId = candidateId;
-		this.jobId = jobId;
-		this.applicationDate = applicationDate;
-		this.status = status;
-		this.job = job;
-		this.candidate = candidate;
+	public Long getUserid() {
+		return userid;
 	}
+	public void setUserid(Long userid) {
+		this.userid = userid;
+	}
+	
+	
 	public Application() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -151,7 +151,8 @@
 			</div>
 			<form action="apply-job" method="post" enctype="multipart/form-data" id="form2">
 				
-				<input type="hidden" name="jobId" value="${job.jobId }" required><br> 
+				<input type="hidden" name="jobId" value="${job.jobId }">
+				
 						
 				<div>
 					<label>Skills: </label> 

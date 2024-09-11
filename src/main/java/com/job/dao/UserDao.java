@@ -75,4 +75,28 @@ public class UserDao {
         
 		return user;
 	}
+
+	public User getUserById(Long userid) {
+		User user=null;
+		try {
+			String sql = "SELECT * FROM User WHERE user_id ="+userid;
+	        PreparedStatement stmt = con.prepareStatement(sql);
+
+	        ResultSet rs = stmt.executeQuery();
+	        
+	        if (rs.next()) {
+	        	user=new User();
+	        	user.setUserId(rs.getLong("user_id"));
+	        	user.setUsername(rs.getString("username"));
+	        	user.setEmail(rs.getString("email"));
+	        	user.setPhone(rs.getString("phone"));
+	        	user.setStatus(rs.getString("status"));
+	        	
+	        	return user;
+	        }
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return user;
+	}
 }

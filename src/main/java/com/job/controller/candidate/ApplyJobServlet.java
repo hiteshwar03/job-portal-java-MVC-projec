@@ -51,7 +51,7 @@ public class ApplyJobServlet extends HttpServlet {
     			  
     	  
     	  CandidateDao candidateDao=new CandidateDao();
-    	  boolean res = candidateDao.addCandidate(candidate);
+    	  boolean isCandidateAdd = candidateDao.addCandidate(candidate);
    
     	  
     	  //fetch candidate id
@@ -62,16 +62,21 @@ public class ApplyJobServlet extends HttpServlet {
     	  Application application=new Application();
     	  application.setCandidateId(candidate_id);
     	  application.setJobId(jobid); 	  
+    	  application.setCandidate(user);
+
+    	  //is application already done
+    	  ApplicationDao applicationDao=new ApplicationDao();
+    	  boolean applicationDone = applicationDao.isApplicationDone(user.getUserId());
     	  
-    	  
-    	  if(res) {
-    		  ApplicationDao applicationDao=new ApplicationDao();
-    		  applicationDao.addApplication(application);    		  
+    	  if(isCandidateAdd) {  
+    		  if(applicationDone==false) { //if application not done
+    			  applicationDao.addApplication(application);
+    		  }
     		  
     	  }
     	  
     	  
-    	  response.sendRedirect(request.getContextPath()+"/candidate-dashboard");
+    	  response.sendRedirect(request.getContextPath()+"/candidate/candidate-dashboard");
         
     }
 }

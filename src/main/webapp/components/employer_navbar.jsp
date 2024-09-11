@@ -123,7 +123,7 @@ form {
 						  <c:otherwise>
 							<li><a href="${pageContext.request.contextPath}/employer/employer-dashboard">Dashboard &nbsp; </a>|</li>
 							<li><a href="${pageContext.request.contextPath}/employer/add_job.jsp">Post Job &nbsp; </a>|</li>
-							<li><a href="#about">View Application</a></li>
+							<li><a href="${pageContext.request.contextPath}/employer/view-application">View Application</a></li>
 							<li>
 								<form action="">
 									<input type="text" placeholder="Search Jobs here">
