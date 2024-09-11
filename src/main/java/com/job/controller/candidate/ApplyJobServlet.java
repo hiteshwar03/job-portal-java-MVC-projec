@@ -2,6 +2,7 @@ package com.job.controller.candidate;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -30,6 +31,9 @@ public class ApplyJobServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		  response.setContentType("text/html");
+		  
     	HttpSession session=request.getSession();
     	User user=(User) session.getAttribute("user");
     	
@@ -49,10 +53,15 @@ public class ApplyJobServlet extends HttpServlet {
     	  candidate.setCover(skill);
     	  candidate.setResume(fileContent.readAllBytes());
     			  
-    	  
+    	  ApplicationDao applicationDao=new ApplicationDao();
+    	  boolean applicationDone = applicationDao.isApplicationDone(jobid, user.getUserId());
+
+    	  //insert into if application not aleardy applied
+    	  boolean isCandidateAdd=false;
     	  CandidateDao candidateDao=new CandidateDao();
-    	  boolean isCandidateAdd = candidateDao.addCandidate(candidate);
-   
+    	  if(applicationDone==false) {
+	    	  isCandidateAdd = candidateDao.addCandidate(candidate);
+    	  }
     	  
     	  //fetch candidate id
     	 Long candidate_id = candidateDao.getCandidateIdByJobSeekerId(user.getUserId());
@@ -65,18 +74,29 @@ public class ApplyJobServlet extends HttpServlet {
     	  application.setCandidate(user);
 
     	  //is application already done
-    	  ApplicationDao applicationDao=new ApplicationDao();
-    	  boolean applicationDone = applicationDao.isApplicationDone(user.getUserId());
+    	  
     	  
     	  if(isCandidateAdd) {  
     		  if(applicationDone==false) { //if application not done
     			  applicationDao.addApplication(application);
-    		  }
-    		  
+    			  response.sendRedirect(request.getContextPath()+"/candidate/candidate-dashboard");
+    		  }  
+    	  }
+    	  else {
+    		  out.println("<html>");
+	  	        out.println("<head><title>Run JavaScript from Servlet</title></head>");
+	  	        out.println("<body>");
+	
+	  	        out.println("<script type='text/javascript'>");
+	  	        out.println("alert('You already applied for this job');");
+	  	        out.println("window.location.href = '" + request.getContextPath() + "/candidate/candidate-dashboard';");
+	  	        out.println("</script>");
+	
+	  	        out.println("</body>");
+	  	        out.println("</html>");
     	  }
     	  
     	  
-    	  response.sendRedirect(request.getContextPath()+"/candidate/candidate-dashboard");
         
     }
 }

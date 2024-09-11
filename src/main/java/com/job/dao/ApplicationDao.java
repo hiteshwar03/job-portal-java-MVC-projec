@@ -106,20 +106,21 @@ public class ApplicationDao {
 		return applications;
 	}
 
-	public boolean isApplicationDone(Long userId) {
-		String sql="select application_id from application where user_id="+userId;
+	public boolean isApplicationDone(Long jobid, Long userId) {
+		String sql="select * from application where user_id=? and job_id=?";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
-
+			pstmt.setLong(1, userId);
+			pstmt.setLong(2, jobid);
+			
+			
 			ResultSet rs = pstmt.executeQuery();
 
 			if(rs.next()) {				
 				return true;
 			}
 			
-			rs.close();
-			pstmt.close();
 
 		} catch (Exception e) {
 			 e.printStackTrace();  
