@@ -104,9 +104,9 @@ aside{
 							<td>${job.jobType}</td>
 							<td>${job.postedDate}</td>
 							<td>${job.status}</td>
-                            <td><a href="view-job?id=${job.jobId}" id="view"><i class="fa-regular fa-eye"></i> View</a></td>
-                            <td><a href="view-job?id=${job.jobId}" id="edit"><i class="fa-regular fa-pen-to-square"></i> Edit</a></td>
-                            <td><a href="view-job?id=${job.jobId}" id="delete"><i class="fa-solid fa-trash"></i> Delete</a></td>
+                            <td><a href="${pageContext.request.contextPath}/employer/view-job?id=${job.jobId}" id="view"><i class="fa-regular fa-eye"></i> View</a></td>
+                            <td><a href="edit-job?id=${job.jobId}" id="edit"><i class="fa-regular fa-pen-to-square"></i> Edit</a></td>
+                            <td><a href="delete-job?id=${job.jobId}" id="delete"><i class="fa-solid fa-trash"></i> Delete</a></td>
                          </tr>
                          </c:forEach>
                     </table>
