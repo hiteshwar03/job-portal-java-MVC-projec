@@ -185,4 +185,39 @@ public class JobDao {
 		return jobs;
 	}
 
+	public boolean updateJob(Job job) {
+		String sql = "update Job set employer_id=?, job_title=?, job_description=?, location=?, salary=?, job_type=?, status=?, experience=?, requirements=?, responsibilities=?, benefits=?, openings=? where job_id=?";
+
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			
+			
+			stmt.setLong(1, job.getEmployerId());
+			stmt.setString(2, job.getJobTitle());
+			stmt.setString(3, job.getJobDescription());
+			stmt.setString(4, job.getLocation());
+			stmt.setDouble(5, job.getSalary());
+			stmt.setString(6, job.getJobType());
+			stmt.setString(7, job.getStatus());
+			stmt.setString(8, job.getExperience());
+			stmt.setString(9, job.getRequirement());
+			stmt.setString(10, job.getResponisibilities());
+			stmt.setString(11, job.getBenefits());
+			stmt.setString(12, job.getVacancy());
+			stmt.setLong(13, job.getJobId());
+
+			int res = stmt.executeUpdate();
+
+			if (res > 0) {
+				return true;
+			}
+
+			stmt.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
 }

@@ -174,6 +174,15 @@ public class Job {
 	public Job() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Job [jobId=" + jobId + ", employerId=" + employerId + ", jobTitle=" + jobTitle + ", jobDescription="
+				+ jobDescription + ", location=" + location + ", salary=" + salary + ", jobType=" + jobType
+				+ ", postedDate=" + postedDate + ", status=" + status + ", experience=" + experience + ", requirement="
+				+ requirement + ", responisibilities=" + responisibilities + ", benefits=" + benefits + ", vacancy="
+				+ vacancy + ", company=" + company + "]";
 	}  
     
     

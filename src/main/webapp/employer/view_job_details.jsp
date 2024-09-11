@@ -69,6 +69,16 @@
 			font-weight: 600;
 			color: rgb(38, 18, 35);
 		}
+		#btn-edit{
+			margin:2rem auto;
+		}
+		#btn-edit a{
+			margin:0 auto;
+			text-decoration: none;
+			background-color: green;
+			color:white;
+			padding:0.4rem 1.2rem;
+		}
 		
 		</style>
 	</head>
@@ -123,6 +133,10 @@
 			<div class="job-benefits">
 				<strong>Benefits:</strong>
 				<p>${job.benefits}</p>
+			</div>
+			
+			<div id="btn-edit">
+				<a href="${pageContext.request.contextPath}/employer/edit-job?id=${job.jobId}">Edit</a>
 			</div>
 			
 		</div>
