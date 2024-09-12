@@ -99,4 +99,21 @@ public class UserDao {
 		}
 		return user;
 	}
+
+	public void updateUser(Long userId, String phone) {
+	    String sql = "UPDATE User SET phone = ? WHERE user_id = ?";
+
+	    try (PreparedStatement stmt = con.prepareStatement(sql)) {
+	        // Set the phone number and user ID
+	        stmt.setString(1, phone);  // Set the provided phone number
+	        stmt.setLong(2, userId);   // Set the provided user ID
+
+	        // Execute the update
+	        stmt.executeUpdate();
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
 }

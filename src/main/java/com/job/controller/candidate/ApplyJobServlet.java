@@ -15,8 +15,10 @@ import javax.servlet.http.Part;
 
 import com.job.dao.ApplicationDao;
 import com.job.dao.CandidateDao;
+import com.job.dao.JobDao;
 import com.job.model.Application;
 import com.job.model.Candidate;
+import com.job.model.Job;
 import com.job.model.User;
 
 
@@ -36,6 +38,7 @@ public class ApplyJobServlet extends HttpServlet {
 		  
     	HttpSession session=request.getSession();
     	User user=(User) session.getAttribute("user");
+    	
     	
     	Long jobid=Long.parseLong(request.getParameter("jobId"));
     	String skill=request.getParameter("skills");
@@ -73,17 +76,34 @@ public class ApplyJobServlet extends HttpServlet {
     	  application.setJobId(jobid); 	  
     	  application.setUser(user);
 
-    	  //is application already done
     	  
+    	  JobDao jobDao=new JobDao();
+    	  Job jobById = jobDao.getJobById(jobid);
     	  
     	  if(isCandidateAdd) {  
-    		  if(applicationDone==false) { //if application not done
-    			  applicationDao.addApplication(application);
-    			  response.sendRedirect(request.getContextPath()+"/candidate/candidate-dashboard");
+    		  if(applicationDone==false) { //if application not done yet
+    			  if(jobById.getStatus()=="Open") {
+	    			  applicationDao.addApplication(application);
+	    			  response.sendRedirect(request.getContextPath()+"/candidate/candidate-dashboard");
+    			  }
+    			  else if(jobById.getStatus()=="Close") { //cannot apply if job status is "close"
+    				  out.println("<html>");
+    		  	        out.println("<head><title>Run JavaScript from Servlet</title></head>");
+    		  	        out.println("<body>");
+    		
+    		  	        out.println("<script type='text/javascript'>");
+    		  	        out.println("alert('You cannot apply for this job');");
+    		  	        out.println("window.location.href = '" + request.getContextPath() + "/candidate/candidate-dashboard';");
+    		  	        out.println("</script>");
+    		
+    		  	        out.println("</body>");
+    		  	        out.println("</html>");
+    		  	        return;
+    			  }
     		  }  
     	  }
     	  else {
-    		  out.println("<html>");
+    		    out.println("<html>");
 	  	        out.println("<head><title>Run JavaScript from Servlet</title></head>");
 	  	        out.println("<body>");
 	

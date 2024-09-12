@@ -146,7 +146,7 @@ form {
 						           	 <a href="${pageContext.request.contextPath}/register.jsp">Signup</a>
 						        </c:when>
 						        <c:otherwise>
-						            <a href="view-profile" id="username"><i class="fa-solid fa-user-tie"></i> ${fn:toUpperCase(sessionScope.user.username)}</a>
+						            <a href="${pageContext.request.contextPath}/candidate/view-profile" id="username"><i class="fa-solid fa-user-tie"></i> ${fn:toUpperCase(sessionScope.user.username)}</a>
 						            | Role: <span id="role">${sessionScope.user.role}</span>
 						            | <a href="${pageContext.request.contextPath}/logout" id="logout">Logout</a>
 						            

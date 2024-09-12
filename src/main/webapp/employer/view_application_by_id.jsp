@@ -32,7 +32,8 @@
 		width: 50%;
 		display: flex;
 		justify-content: space-between;
-		font-size:0.6rem;
+		font-size:1rem;
+		font-weight: 700;
 		}
 		.title{
 		  color: rgb(38, 18, 35);
@@ -59,16 +60,7 @@
 		.total-vacancy, .posted-date, .status, .job-location {
 			font-size: 1.1rem;
 		}
-		.job-location{
-			margin-bottom: 3rem;
-		}
-		.total-vacancy{
-			margin-top: 2rem;
-		}
-		.total-vacancy span, .posted-date span, .status span, .job-location span{
-			font-weight: 600;
-			color: rgb(38, 18, 35);
-		}
+		
 		#btn-edit{
 			margin:2rem auto;
 		}
@@ -116,23 +108,24 @@
 						<p class="id">Job ID: ${application.job.jobId} </p>
 					</div>
 					<div class="job-title">
-						<p class="title">${application.job.jobTitle} </p>
+						<p class="title">Job Title: ${application.job.jobTitle} </p>
 					</div>
 					<div class="job-location">
-						<p class="location">${application.job.location} </p>
+						<p class="location">Location: ${application.job.location} </p>
 					</div>
+					
 					<div class="job-experience">
-						<p class="experience">${application.job.experience} </p>
+						<p class="experience">Experience: ${application.job.experience} </p>
 					</div>
 					<div class="job-type">
-						<p class="job-type-heading">${application.job.jobType} </p>
+						<p class="job-type-heading">JobType: ${application.job.jobType} </p>
 					</div>
 					<div class="job-postedDate">
-						<p class="postedDate">${application.job.postedDate} </p>
+						<p class="postedDate">Job posted on: ${application.job.postedDate} </p>
 					</div>
 					
 					<div class="job-status">
-						<p class="status">${application.job.status} </p>
+						<p class="status">Job status: ${application.job.status} </p>
 					</div>
 					
 				</div>
@@ -140,17 +133,17 @@
 					<div class="user-id">
 						<p class="id">Candidate ID: ${application.user.userId} </p>
 					</div>
-					<div class="user-phone">
-						<p class="phone">${application.user.phone} </p>
-					</div>
 					<div class="user-username">
-						<p class="username">${application.user.username} </p>
+						<p class="username">Candidate Name: ${application.user.username} </p>
+					</div>
+					<div class="user-phone">
+						<p class="phone">Candidate phone no.: ${application.user.phone} </p>
 					</div>
 					<div class="user-email">
-						<p class="email">${application.user.email} </p>
+						<p class="email">Candidate Email: ${application.user.email} </p>
 					</div>			
 					<div class="user-cover">
-						<p class="cover">${application.candidate.cover} </p>
+						<p class="cover">Candidate skill: ${application.candidate.cover} </p>
 					</div>			
 					<div>
 						<a href="${pageContext.request.contextPath}/employer/download-resume?id=${application.applicationId}" id="downloadResume">

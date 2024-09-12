@@ -1,8 +1,6 @@
 package com.job.controller.employer;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
