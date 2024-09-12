@@ -240,5 +240,54 @@ public class JobDao {
 		return false;
 	}
 
+	public List<Job> getAllJobsWithKeyword(String keyword) {
+		String sql = "SELECT j.job_id, j.job_title, j.job_description, j.location, j.salary, j.job_type, j.status,  j.posted_on, j.experience, c.company_id, c.company_name FROM Job j JOIN Company c ON j.employer_id = c.employer_id where j.job_title LIKE ? OR j.job_description LIKE ? OR j.location LIKE ? OR j.job_type LIKE ? OR c.company_name LIKE ?";
+
+		List<Job> jobs = new ArrayList<>();
+
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + keyword + "%"); 
+			pstmt.setString(2, "%" + keyword + "%"); 
+			pstmt.setString(3, "%" + keyword + "%"); 
+			pstmt.setString(4, "%" + keyword + "%"); 
+			pstmt.setString(5, "%" + keyword + "%"); 
+			
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				Company company = new Company();
+				company.setCompanyId(rs.getLong("company_id"));
+				company.setCompanyName(rs.getString("company_name"));
+
+				Job job = new Job();
+
+				job.setJobId(rs.getLong("job_id"));
+				job.setJobTitle(rs.getString("job_title"));
+				job.setJobDescription(rs.getString("job_description"));
+				job.setLocation(rs.getString("location"));
+				job.setJobType(rs.getString("job_type"));
+				job.setStatus(rs.getString("status"));
+				job.setSalary(rs.getDouble("salary"));
+				job.setPostedDate(rs.getTimestamp("posted_on"));
+				job.setExperience(rs.getString("experience"));
+				job.setCompany(company);
+
+				jobs.add(job);
+
+			}
+			
+			rs.close();
+			pstmt.close();
+
+		} catch (Exception e) {
+			 e.printStackTrace();  
+
+		}
+		return jobs;
+	
+	}
+
 
 }

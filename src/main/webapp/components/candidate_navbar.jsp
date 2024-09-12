@@ -125,8 +125,8 @@ form {
 							<li><a href="${pageContext.request.contextPath}/candidate/applied-jobs">Applied Job &nbsp; </a>|</li>
 							<li><a href="${pageContext.request.contextPath}/candidate/candidate-dashboard">All Jobs</a></li>
 							<li>
-								<form action="">
-									<input type="text" placeholder="Search Jobs here">
+								<form action="${pageContext.request.contextPath}/candidate/search-jobs">
+									<input type="text" placeholder="Search Jobs here" name="keyword">
 									<button type="submit">
 										<i class="fa-solid fa-magnifying-glass"></i>
 									</button>
