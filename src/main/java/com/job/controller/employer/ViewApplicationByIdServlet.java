@@ -1,6 +1,7 @@
 package com.job.controller.employer;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -24,7 +25,8 @@ public class ViewApplicationByIdServlet extends HttpServlet {
 		
 		ApplicationDao applicationDao=new ApplicationDao();
 		Application application = applicationDao.getApplicationId(appid);
-		
+
+        
         request.setAttribute("application", application);
         request.getRequestDispatcher("/employer/view_application_by_id.jsp").forward(request, response);
         

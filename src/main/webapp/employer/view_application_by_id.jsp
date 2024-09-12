@@ -152,10 +152,14 @@
 					<div class="user-cover">
 						<p class="cover">${application.candidate.cover} </p>
 					</div>			
+					<div>
+						<a href="${pageContext.request.contextPath}/employer/download-resume?id=${application.applicationId}" id="downloadResume">
+						    <i class="fa-solid fa-download"></i> Download Resume
+						</a>
+												
+					</div>
+							
 						
-					<div class="user-resume">
-						<p class="resume">${application.candidate.resume} </p>
-					</div>			
 				</div>
 			</div>
 

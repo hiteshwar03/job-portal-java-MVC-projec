@@ -50,10 +50,7 @@
 		    .heading{
 		    	margin: 0 auto;
 		    }
-		    .content h3{
-		    	color:gray;
-		    }
-}
+		   
 	</style>
 </head>
 <body>
