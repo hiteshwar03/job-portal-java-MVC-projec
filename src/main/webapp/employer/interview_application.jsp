@@ -50,9 +50,6 @@
 		    .heading{
 		    	margin: 0 auto;
 		    }
-		    .content h3{
-		    	color:gray;
-		    }
 }
 	</style>
 </head>
@@ -63,14 +60,10 @@
 	<main>
             <h5>As an employer, you can manage your job postings and applications here.</h5>
             <hr>
-            <div class="content">
+         
             
-            		<h3>Total Application: ${totalApplications}</h3>
-            		<h3>Application for Interview: ${totalInterviewApplication}</h3>
-            		<h3>Selected Application: ${totalSelectedApplication}</h3>
-            		<h3>Rejected Application: ${totalRejectedApplication}</h3>
-            		<br><br>
-					<h4 class="heading">All Applications</h4>
+             <div class="content">
+					<h2 class="heading">Interview</h2>
                     <table class="table table-striped">
                         <tr >
                            <th>Application Id</th>
@@ -84,7 +77,7 @@
 							<th>Action</th>
 							<th></th>
                         </tr>
-                        <c:forEach var="application" items="${allApplication}">
+                        <c:forEach var="application" items="${interviewApplications}">
                         <tr>
                         	<td>${application.applicationId}</td>
                         	<td>${application.job.jobId}</td>
@@ -100,10 +93,7 @@
                          </c:forEach>
                     </table>
             </div>
-            
-            
-            </div>
-            
+         
         </main>	
         
         <script type="text/javascript">

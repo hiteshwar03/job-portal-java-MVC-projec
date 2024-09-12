@@ -94,7 +94,10 @@ aside{
 							<th>Job Type</th>
 							<th>Posted date</th>
 							<th>Status</th>
+							<th></th>
 							<th>Action</th>
+							<th></th>
+								
                         </tr>
                         <c:forEach var="job" items="${allJobs}">
                         <tr>

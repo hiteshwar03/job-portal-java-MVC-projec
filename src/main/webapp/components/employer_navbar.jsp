@@ -123,15 +123,11 @@ form {
 						  <c:otherwise>
 							<li><a href="${pageContext.request.contextPath}/employer/employer-dashboard">Dashboard &nbsp; </a>|</li>
 							<li><a href="${pageContext.request.contextPath}/employer/add_job.jsp">Post Job &nbsp; </a>|</li>
-							<li><a href="${pageContext.request.contextPath}/employer/view-application">View Application</a></li>
-							<li>
-								<form action="">
-									<input type="text" placeholder="Search Jobs here">
-									<button type="submit">
-										<i class="fa-solid fa-magnifying-glass"></i>
-									</button>
-								</form>
-							</li>
+							<li><a href="${pageContext.request.contextPath}/employer/all-applications">All Application &nbsp;</a>|</li>
+							<li><a href="${pageContext.request.contextPath}/employer/interview-applications">Interviewed Application &nbsp;</a>|</li>
+							<li><a href="${pageContext.request.contextPath}/employer/selected-applications">Selected Application &nbsp;</a>|</li>
+							<li><a href="${pageContext.request.contextPath}/employer/reject-applications">Rejected Application</a></li>
+							
 						  </c:otherwise>
 					</c:choose>
 				</ul>

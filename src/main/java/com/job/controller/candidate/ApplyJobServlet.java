@@ -71,7 +71,7 @@ public class ApplyJobServlet extends HttpServlet {
     	  Application application=new Application();
     	  application.setCandidateId(candidate_id);
     	  application.setJobId(jobid); 	  
-    	  application.setCandidate(user);
+    	  application.setUser(user);
 
     	  //is application already done
     	  

@@ -11,8 +11,9 @@ public class Application {
 	private Timestamp applicationDate;
 	
 	private Job job;
-	private User candidate;
-		
+	private User user;
+	private Candidate candidate;
+	
 	public int getApplicationId() {
 		return applicationId;
 	}
@@ -52,10 +53,17 @@ public class Application {
 		this.job = job;
 	}
 	
-	public User getCandidate() {
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Candidate getCandidate() {
 		return candidate;
 	}
-	public void setCandidate(User candidate) {
+	public void setCandidate(Candidate candidate) {
 		this.candidate = candidate;
 	}
 	public Long getUserid() {
