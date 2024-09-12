@@ -130,5 +130,38 @@ public class ApplicationDao {
 		return false;
 	}
 
+	public List<Application> getAllApplicationsById(Long userId) {
+		List<Application> applications=new ArrayList<Application>();
+		
+		String sql="select job_id from application where user_id="+userId;
+		
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while(rs.next()) {				
+				Job job = new Job();
+				job.setJobId(rs.getLong("job_id"));
+				
+				
+				Application application=new Application();
+				application.setJob(job);
+				
+				applications.add(application);
+				
+			}
+			
+			rs.close();
+			pstmt.close();
+
+		} catch (Exception e) {
+			 e.printStackTrace();  
+
+		}
+		
+		return applications;
+	}
+
 	
 }

@@ -101,13 +101,13 @@ public class JobDao {
 		return jobs;
 	}
 
-	public Job getJobById(int jobId) {
+	public Job getJobById(Long jobId) {
 		String sql = "SELECT j.job_id, j.job_title, j.job_description, j.location, j.salary, j.job_type, j.status, j.posted_on, j.experience, j.requirements, j.responsibilities, j.openings, j.benefits, c.company_id, c.company_name, c.company_address FROM Job j JOIN Company c ON j.employer_id = c.employer_id where j.job_id=?";
 
 		Job job=null;
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, jobId);
+			pstmt.setLong(1, jobId);
 			ResultSet rs = pstmt.executeQuery();
 
 			if(rs.next()) {
@@ -239,5 +239,6 @@ public class JobDao {
 
 		return false;
 	}
+
 
 }

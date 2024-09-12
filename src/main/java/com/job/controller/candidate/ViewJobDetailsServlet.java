@@ -20,7 +20,7 @@ public class ViewJobDetailsServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-    	int jobid=Integer.parseInt(request.getParameter("id"));
+    	Long jobid=Long.parseLong(request.getParameter("id"));
     	
     	JobDao jobDao=new JobDao();
     	Job jobById = jobDao.getJobById(jobid);

@@ -40,7 +40,7 @@
 				
 				<div class="login-form">
 					<h2>Login</h2><br>
-					<form action="login" method="POST">
+					<form action="${pageContext.request.contextPath}/login" method="POST">
 					  <div class="mb-3">
 					  <label for="exampleInputEmail1" class="form-label">Email</label>
 					    <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E.g. hiteshwar">
