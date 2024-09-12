@@ -87,7 +87,7 @@
 							<td>${application.user.phone}</td>
 							<td>${application.user.username}</td>
 							 <td><a href="${pageContext.request.contextPath}/employer/view-application?id=${application.applicationId}" id="view"><i class="fa-regular fa-eye"></i> View</a></td>
-							<td><a href="javascript:confirmDelete(${application.applicationId}})" id="delete"><i class="fa-solid fa-trash"></i> Delete</a></td>
+							<td><a href="javascript:confirmDelete(${application.applicationId})" id="delete"><i class="fa-solid fa-trash"></i> Delete</a></td>
                          </tr>
                          </c:forEach>
                     </table>
