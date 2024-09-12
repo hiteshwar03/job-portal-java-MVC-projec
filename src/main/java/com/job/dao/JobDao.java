@@ -241,7 +241,7 @@ public class JobDao {
 	}
 
 	public List<Job> getAllJobsWithKeyword(String keyword) {
-		String sql = "SELECT j.job_id, j.job_title, j.job_description, j.location, j.salary, j.job_type, j.status,  j.posted_on, j.experience, c.company_id, c.company_name FROM Job j JOIN Company c ON j.employer_id = c.employer_id where j.job_title LIKE ? OR j.job_description LIKE ? OR j.location LIKE ? OR j.job_type LIKE ? OR c.company_name LIKE ?";
+		String sql = "SELECT j.job_id, j.job_title, j.job_description, j.location, j.salary, j.job_type, j.status,  j.posted_on, j.experience, c.company_id, c.company_name FROM Job j JOIN Company c ON j.employer_id = c.employer_id where j.job_title LIKE ? OR j.location LIKE ? OR c.company_name LIKE ?";
 
 		List<Job> jobs = new ArrayList<>();
 
@@ -250,8 +250,6 @@ public class JobDao {
 			pstmt.setString(1, "%" + keyword + "%"); 
 			pstmt.setString(2, "%" + keyword + "%"); 
 			pstmt.setString(3, "%" + keyword + "%"); 
-			pstmt.setString(4, "%" + keyword + "%"); 
-			pstmt.setString(5, "%" + keyword + "%"); 
 			
 			ResultSet rs = pstmt.executeQuery();
 

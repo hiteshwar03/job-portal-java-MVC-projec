@@ -139,25 +139,35 @@
 				</div>
 			</aside>
 			<section>
-				<c:forEach var="job" items="${allJobs}">
-				<div class="job-card">
-						<h2 id="job-title">${job.jobTitle}</h2>
-					<div class="company">
-						<h4 id="company-name">${job.company.companyName}</h4>
-						<p><i class="fa-solid fa-location-dot"></i> ${job.location}</p>
-					</div>
-					
-					<div class="duration">
-						<p><i class="fa-solid fa-briefcase"></i> ${job.experience}</p>
-						<p><i class="fa-solid fa-indian-rupee-sign"></i> ${job.salary}/- per anum</p>
-					</div>
-					
-					<div class="btn-apply-container">
-						<hr class="horozontal-line">
-						<a href="view-job-details?id=${job.jobId}" class="btn-view-details">View Details</a>
-					</div>
-				</div>
-				</c:forEach>
+				
+				
+				<c:choose>
+			        <c:when test="${empty allJobs}">
+						<h2>${msg}</h2>
+			        </c:when>
+			        <c:otherwise>
+			            <c:forEach var="job" items="${allJobs}">
+							<div class="job-card">
+									<h2 id="job-title">${job.jobTitle}</h2>
+								<div class="company">
+									<h4 id="company-name">${job.company.companyName}</h4>
+									<p><i class="fa-solid fa-location-dot"></i> ${job.location}</p>
+								</div>
+								
+								<div class="duration">
+									<p><i class="fa-solid fa-briefcase"></i> ${job.experience}</p>
+									<p><i class="fa-solid fa-indian-rupee-sign"></i> ${job.salary}/- per anum</p>
+								</div>
+								
+								<div class="btn-apply-container">
+									<hr class="horozontal-line">
+									<a href="view-job-details?id=${job.jobId}" class="btn-view-details">View Details</a>
+								</div>
+							</div>
+						</c:forEach>
+			        </c:otherwise>
+			    </c:choose>
+			    
 			</section>
 		</div>
 	</main>

@@ -44,9 +44,13 @@ public class SearchJobsServlet extends HttpServlet {
 		JobDao jobDao=new JobDao();
 		List<Job> allSearchJobs = jobDao.getAllJobsWithKeyword(keyword);
 		
+		if(allSearchJobs.size()==0) {
+			request.setAttribute("msg", "Sorry....No job found for this match");
+		}
+		else {
+			request.setAttribute("allJobs", allSearchJobs);			
+		}
 
-
-		request.setAttribute("allJobs", allSearchJobs);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/candidate/searched_jobs.jsp");//forward request attribute value
 		dispatcher.forward(request, response);
 		

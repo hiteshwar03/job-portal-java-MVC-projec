@@ -80,9 +80,10 @@ nav {
 form { 
 	&>input { 
 		height: 1.8rem;
-		width:16rem;
+		width:20rem;
 		border-radius: 2px;
 		border: none;
+		padding-left:0.5rem;
 	}
 
 	&>button {
@@ -126,7 +127,7 @@ form {
 							<li><a href="${pageContext.request.contextPath}/candidate/candidate-dashboard">All Jobs</a></li>
 							<li>
 								<form action="${pageContext.request.contextPath}/candidate/search-jobs">
-									<input type="text" placeholder="Search Jobs here" name="keyword">
+									<input type="text" placeholder="Search Jobs by title or location or company" name="keyword">
 									<button type="submit">
 										<i class="fa-solid fa-magnifying-glass"></i>
 									</button>
